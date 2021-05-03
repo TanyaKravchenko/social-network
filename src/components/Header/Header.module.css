@@ -1,8 +1,9 @@
 .header {
     grid-area: header;
-    background-color: aqua;
+
+    background: url('../../images/anons.jpg');
 }
 
 .header img {
-    width: 20px;
+    width: 150px;
 }
