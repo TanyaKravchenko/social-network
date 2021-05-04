@@ -9,7 +9,7 @@
   grid-template-columns: 2fr 10fr;
   grid-gap: 2px;
 }
-/*.app-wrapper-content {*/
-/*  grid-area: content;*/
-/*  background-color: #b2b3ad;*/
-/*}*/
+.app-wrapper-content {
+  grid-area: content;
+  background-color: darkcyan;
+}
