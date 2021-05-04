@@ -4,5 +4,17 @@
 }
 
 .item {
+    margin-left: 15px;
+    padding: 10px;
+    font-size: 20px;
+    /*font-weight: bold;*/
+}
+
+.item  a {
     color: azure;
+    text-decoration: none;
+}
+
+.item a.active {
+    color: goldenrod;
 }
