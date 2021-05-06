@@ -6,7 +6,7 @@ const ProfileInfo = () => {
     return (
         <div>
             <div>
-                <img src={profile_img} alt={'profile_img'}/>
+                {/*<img src={profile_img} alt={'profile_img'}/>*/}
             </div>
             <div className={classes.descriptionBlock}>
                 ava+description

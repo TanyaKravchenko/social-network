@@ -1,0 +1,13 @@
+.friendAvatar img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.nameClass {
+    font-size: 18px;
+}
+
+.itemFriend:hover {
+    opacity: 0.5;
+}

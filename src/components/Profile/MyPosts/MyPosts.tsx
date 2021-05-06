@@ -1,13 +1,14 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
+import {PostType} from '../../../redux/state';
 
-const MyPosts = () => {
-    let posts = [
-        {id:1, message: 'HiHello', likes: 5},
-        {id:2, message: 'YoHello', likes: 15}
-    ]
-    let postsElement = posts.map(p => <Post message={p.message} likes={p.likes}/>)
+export type MyPostsType = {
+    posts: Array<PostType>
+}
+
+const MyPosts: React.FC<MyPostsType> = (props ) => {
+    let postsElement = props.posts.map(post => <Post key={post.id} id={post.id} message={post.message} likes={post.likes}/>)
 
     return (
         <div className={classes.postBlock}>

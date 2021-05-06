@@ -1,0 +1,35 @@
+.dialogItem {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.dialogItem:hover {
+    opacity: 0.5;
+}
+
+.dialog {
+    padding: 15px;
+}
+
+.dialogItem .dialog {
+    display: flex;
+    align-items: center;
+}
+
+.dialogAvatar img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50px;
+    margin: 10px;
+}
+
+.dialogName{
+    align-self: center;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.dialogName a{
+    text-decoration: none;
+    color: goldenrod;
+}

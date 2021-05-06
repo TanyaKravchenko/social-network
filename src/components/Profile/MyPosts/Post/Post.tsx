@@ -3,11 +3,12 @@ import classes from './Post.module.css';
 import avatar from '../../../../images/avatar1.png';
 
 type PostType = {
+    id: number
     message: string
     likes: number
 }
 
-const Post = (props:PostType) => {
+const Post: React.FC<PostType> = (props) => {
     return (
         <div className={classes.item}>
             <div className={classes.post_avatar}>
