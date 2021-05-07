@@ -3,23 +3,26 @@
     display: grid;
     background-color: cadetblue;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    text-align: center;
 }
 
 .item {
-    padding: 10px;
     font-size: 26px;
-    align-self: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .item:hover {
     opacity: 0.5;
+    background: darkcyan;
+    border: 1px solid azure;
 }
 
-.item:hover > *:hover {
+/* .item:hover > *:hover {
     transform: scale(1.1);
     opacity: 1;
-}
+} */
 
 .item a {
     color: azure;
