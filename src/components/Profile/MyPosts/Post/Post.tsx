@@ -3,7 +3,7 @@ import classes from './Post.module.css';
 import avatar from '../../../../images/avatar1.png';
 
 type PostType = {
-    id: number
+    id: string
     message: string
     likes: number
 }

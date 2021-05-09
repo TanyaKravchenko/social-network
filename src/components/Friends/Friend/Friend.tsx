@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import classes from './Friend.module.css';
 
 type FriendType = {
-    id: number
+    id: string
     friendName: string
     avatar: string
 }

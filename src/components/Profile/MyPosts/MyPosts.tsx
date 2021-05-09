@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 import {PostType} from '../../../redux/state';
@@ -17,16 +17,12 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
               message={post.message}
               likes={post.likes}/>)
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
-
     let addPost = () => {
-        if (newPostElement.current)
             props.addPost()
     }
 
-    let onPostChange = () => {
-        if (newPostElement.current)
-            props.updateNewPostText(newPostElement.current.value)
+    let onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+            props.updateNewPostText(e.currentTarget.value)
     }
 
     return (
@@ -36,7 +32,6 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
                 <div>
                     <textarea
                         onChange={onPostChange}
-                        ref={newPostElement}
                         value={props.newPostText}/>
                 </div>
                 <div>

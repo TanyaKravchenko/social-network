@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Message.module.css'
 
 type MessageType = {
-    id: number
+    id: string
     message: string
 }
 

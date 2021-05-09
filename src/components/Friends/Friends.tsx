@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './Friends.module.css';
-import avatar from '../../../../images/avatar1.png';
 import Friend from './Friend/Friend';
 import {SiteBarType} from '../../redux/state';
 

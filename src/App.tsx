@@ -15,6 +15,8 @@ type AppType = {
     state: RootStateType
     addPost: () => void
     updateNewPostText: (newText: string) => void
+    addNewMessage: () => void
+    updateNewMessage: (updateNewMessageText: string) => void
 }
 
 const App: React.FC<AppType> = (props) => {
@@ -29,7 +31,10 @@ const App: React.FC<AppType> = (props) => {
                              addPost={props.addPost}
                              updateNewPostText={props.updateNewPostText}/>}/>
                 <Route path='/dialogs' render={() =>
-                    <Dialogs state={props.state.dialogsPage}/>}/>
+                    <Dialogs state={props.state.dialogsPage}
+                             addNewMessage={props.addNewMessage}
+                             newMessageText={props.state.dialogsPage.newMessageText}
+                             updateNewMessage={props.updateNewMessage}/>}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>
