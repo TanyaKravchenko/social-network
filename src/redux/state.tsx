@@ -53,7 +53,8 @@ let rerenderEntireTree = () => {
     console.log('State')
 }
 
-let state: RootStateType = {
+let store = {
+    _state: {
     profilePage: {
         posts: [
             {id: v1(), message: 'HiHello', likes: 5},
@@ -83,41 +84,49 @@ let state: RootStateType = {
             {id: v1(), friendName: 'Misha', avatar: src3}
         ]
     }
-}
+},
+    getState() {
+        return this._state;
+    },
+    addPost() {
+        let newPost: PostType = {
+            id: v1(),
+            message: this._state.profilePage.newPostText,
+            likes: 0
+        }
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = '';
+        rerenderEntireTree();
+    },
 
-export const addPost = () => {
-    let newPost: PostType = {
-        id: v1(),
-        message: state.profilePage.newPostText,
-        likes: 0
+    updateNewPostText(newText: string) {
+        this._state.profilePage.newPostText = newText;
+        rerenderEntireTree();
+    },
+
+    addNewMessage() {
+        let newMessage: MessageType = {
+            id: v1(),
+            message: this._state.dialogsPage.newMessageText,
+        }
+        this._state.dialogsPage.messages.push(newMessage);
+        this._state.dialogsPage.newMessageText = '';
+        rerenderEntireTree();
+    },
+
+    updateNewMessage(updateNewMessageText: string) {
+        this._state.dialogsPage.newMessageText = updateNewMessageText;
+        rerenderEntireTree();
+    },
+
+    subscribe(observer:any) {
+        rerenderEntireTree = observer
     }
-    state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = '';
-    rerenderEntireTree();
+
 }
 
-export const updateNewPostText = (newText: string) => {
-    state.profilePage.newPostText = newText;
-    rerenderEntireTree();
-}
 
-export const addNewMessage = () => {
-    let newMessage: MessageType = {
-        id: v1(),
-        message: state.dialogsPage.newMessageText,
-    }
-    state.dialogsPage.messages.push(newMessage);
-    state.dialogsPage.newMessageText = '';
-    rerenderEntireTree();
-}
 
-export const updateNewMessage = (updateNewMessageText: string) => {
-    state.dialogsPage.newMessageText = updateNewMessageText;
-    rerenderEntireTree();
-}
 
-export const subscribe = (observer:any) => {
-    rerenderEntireTree = observer
-}
 
-export default state;
+export default store;
