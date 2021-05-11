@@ -3,20 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import state, {addNewMessage, subscribe, updateNewMessage, updateNewPostText} from './redux/state';
-import { addPost } from "./redux/state";
+import store from './redux/state';
 import { BrowserRouter } from "react-router-dom";
-
 
 let rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App
-                state={state}
-                addPost={addPost}
-                updateNewPostText={updateNewPostText}
-                addNewMessage={addNewMessage}
-                updateNewMessage={updateNewMessage}
+                state={store.getState()}
+                addPost={store.addPost.bind(store)}
+                updateNewPostText={store.updateNewPostText.bind(store)}
+                addNewMessage={store.addNewMessage.bind(store)}
+                updateNewMessage={store.updateNewMessage.bind(store)}
             />
         </BrowserRouter>,
         document.getElementById("root")
@@ -24,7 +22,7 @@ let rerenderEntireTree = () => {
 }
 
 rerenderEntireTree();
-subscribe(rerenderEntireTree);
+store.subscribe(rerenderEntireTree);
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

@@ -46,45 +46,55 @@ export type SiteBarType = {
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    siteBar:SiteBarType
+    siteBar: SiteBarType
 }
 
-let rerenderEntireTree = () => {
-    console.log('State')
+export type StoreType = {
+    _state: RootStateType
+    _callSubscriber: () => void
+    getState: () => RootStateType
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+    addNewMessage: () => void
+    updateNewMessage: (updateNewMessageText: string) => void
+    subscribe: (observer: () => void) => void
 }
 
-let store = {
+let store: StoreType = {
     _state: {
-    profilePage: {
-        posts: [
-            {id: v1(), message: 'HiHello', likes: 5},
-            {id: v1(), message: 'YoHello', likes: 15}
-        ],
-        newPostText: 'YoYo'
+        profilePage: {
+            posts: [
+                {id: v1(), message: 'HiHello', likes: 5},
+                {id: v1(), message: 'YoHello', likes: 15}
+            ],
+            newPostText: 'YoYo'
+        },
+        dialogsPage: {
+            dialogs: [
+                {id: v1(), name: 'Dimych', avatar: src1},
+                {id: v1(), name: 'Sveta', avatar: src2},
+                {id: v1(), name: 'Valera', avatar: src3},
+                {id: v1(), name: 'Ignat', avatar: src4},
+                {id: v1(), name: 'Victor', avatar: src5},
+            ],
+            messages: [
+                {id: v1(), message: 'Hi'},
+                {id: v1(), message: 'Yo'},
+                {id: v1(), message: 'Hello!'},
+            ],
+            newMessageText: 'NewMessage'
+        },
+        siteBar: {
+            friendsBlock: [
+                {id: v1(), friendName: 'Kostya', avatar: src1},
+                {id: v1(), friendName: 'Masha', avatar: src2},
+                {id: v1(), friendName: 'Misha', avatar: src3}
+            ]
+        }
     },
-    dialogsPage: {
-        dialogs: [
-            {id: v1(), name: 'Dimych', avatar: src1},
-            {id: v1(), name: 'Sveta', avatar: src2},
-            {id: v1(), name: 'Valera', avatar: src3},
-            {id: v1(), name: 'Ignat', avatar: src4},
-            {id: v1(), name: 'Victor', avatar: src5},
-        ],
-        messages: [
-            {id: v1(), message: 'Hi'},
-            {id: v1(), message: 'Yo'},
-            {id: v1(), message: 'Hello!'},
-        ],
-        newMessageText: "NewMessage"
+    _callSubscriber() {
+        console.log('State')
     },
-    siteBar: {
-        friendsBlock: [
-            {id: v1(), friendName: 'Kostya', avatar: src1},
-            {id: v1(), friendName: 'Masha', avatar: src2},
-            {id: v1(), friendName: 'Misha', avatar: src3}
-        ]
-    }
-},
     getState() {
         return this._state;
     },
@@ -96,14 +106,12 @@ let store = {
         }
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = '';
-        rerenderEntireTree();
+        this._callSubscriber();
     },
-
     updateNewPostText(newText: string) {
         this._state.profilePage.newPostText = newText;
-        rerenderEntireTree();
+        this._callSubscriber();
     },
-
     addNewMessage() {
         let newMessage: MessageType = {
             id: v1(),
@@ -111,22 +119,15 @@ let store = {
         }
         this._state.dialogsPage.messages.push(newMessage);
         this._state.dialogsPage.newMessageText = '';
-        rerenderEntireTree();
+        this._callSubscriber();
     },
-
     updateNewMessage(updateNewMessageText: string) {
         this._state.dialogsPage.newMessageText = updateNewMessageText;
-        rerenderEntireTree();
+        this._callSubscriber();
     },
-
-    subscribe(observer:any) {
-        rerenderEntireTree = observer
+    subscribe(observer) {
+        this._callSubscriber = observer
     }
-
 }
-
-
-
-
 
 export default store;
