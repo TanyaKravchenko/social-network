@@ -49,15 +49,42 @@ export type RootStateType = {
     siteBar: SiteBarType
 }
 
+export type ActionType =
+    AddPostType |
+    UpdateNewPostTextType |
+    AddNewMessageTextType |
+    UpdateNewMessageTextType
+
+type AddPostType = {
+    type: 'ADD-POST'
+    newPostText: string
+}
+
+type UpdateNewPostTextType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+
+type AddNewMessageTextType = {
+    type: 'ADD-NEW-MESSAGE-TEXT'
+    newMessageText: string
+}
+
+type UpdateNewMessageTextType = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    updateNewMessageText: string
+}
+
 export type StoreType = {
     _state: RootStateType
     _callSubscriber: () => void
     getState: () => RootStateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
-    addNewMessage: () => void
-    updateNewMessage: (updateNewMessageText: string) => void
+    _addPost: () => void
+    _updateNewPostText: (newText: string) => void
+    _addNewMessage: () => void
+    _updateNewMessage: (updateNewMessageText: string) => void
     subscribe: (observer: () => void) => void
+    dispatch: (action: ActionType) => void
 }
 
 let store: StoreType = {
@@ -98,7 +125,10 @@ let store: StoreType = {
     getState() {
         return this._state;
     },
-    addPost() {
+    subscribe(observer) {
+        this._callSubscriber = observer
+    },
+    _addPost() {
         let newPost: PostType = {
             id: v1(),
             message: this._state.profilePage.newPostText,
@@ -108,11 +138,11 @@ let store: StoreType = {
         this._state.profilePage.newPostText = '';
         this._callSubscriber();
     },
-    updateNewPostText(newText: string) {
+    _updateNewPostText(newText: string) {
         this._state.profilePage.newPostText = newText;
         this._callSubscriber();
     },
-    addNewMessage() {
+    _addNewMessage() {
         let newMessage: MessageType = {
             id: v1(),
             message: this._state.dialogsPage.newMessageText,
@@ -121,12 +151,21 @@ let store: StoreType = {
         this._state.dialogsPage.newMessageText = '';
         this._callSubscriber();
     },
-    updateNewMessage(updateNewMessageText: string) {
+    _updateNewMessage(updateNewMessageText: string) {
         this._state.dialogsPage.newMessageText = updateNewMessageText;
         this._callSubscriber();
     },
-    subscribe(observer) {
-        this._callSubscriber = observer
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            this._addPost();
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._updateNewPostText(action.newText);
+        } else if (action.type === 'ADD-NEW-MESSAGE-TEXT') {
+            this._addNewMessage();
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._updateNewMessage(action.updateNewMessageText);
+        }
     }
 }
 
