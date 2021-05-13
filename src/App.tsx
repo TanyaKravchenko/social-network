@@ -8,11 +8,12 @@ import {Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import {ActionType, RootStateType} from './redux/state';
+import {ActionType} from './redux/store';
 import Friends from './components/Friends/Friends';
+import {AppStateType} from './redux/redux-store';
 
 type AppType = {
-    state: RootStateType
+    state: AppStateType
     dispatch: (action: ActionType) => void
 }
 
@@ -21,13 +22,13 @@ const App: React.FC<AppType> = (props) => {
         <div className={'app-wrapper'}>
             <Header/>
             <Navbar/>
-            <Friends sidebar={props.state.sidebar}/>
+            <Friends sidebar={props.state.sidebarReducer}/>
             <div className="app-wrapper-content">
                 <Route path='/profile' render={() =>
-                    <Profile profilePage={props.state.profilePage}
+                    <Profile profilePage={props.state.profileReducer}
                              dispatch={props.dispatch}/>}/>
                 <Route path='/dialogs' render={() =>
-                    <Dialogs dialogsPage={props.state.dialogsPage}
+                    <Dialogs dialogsPage={props.state.dialogsReducer}
                              dispatch={props.dispatch}/>}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>
