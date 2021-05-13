@@ -5,6 +5,11 @@ import src3 from '../images/avatar4.jpeg';
 import src4 from '../images/avatar1.png';
 import src5 from '../images/avatar2.jpg';
 
+export const ADD_POST = 'ADD-POST'
+export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+export const ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
+export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+
 export type PostType = {
     id: string
     message: string
@@ -157,13 +162,13 @@ let store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             this._addPost();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._updateNewPostText(action.newText);
-        } else if (action.type === 'ADD-NEW-MESSAGE-TEXT') {
+        } else if (action.type === ADD_NEW_MESSAGE_TEXT) {
             this._addNewMessage();
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
             this._updateNewMessage(action.updateNewMessageText);
         }
     }

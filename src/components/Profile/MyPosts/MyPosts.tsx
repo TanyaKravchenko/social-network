@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ActionType, ProfilePageType} from '../../../redux/state';
+import {ActionType, ADD_POST, ProfilePageType, UPDATE_NEW_POST_TEXT} from '../../../redux/state';
 
 export type MyPostsType = {
     profilePage: ProfilePageType
@@ -16,12 +16,12 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
               likes={post.likes}/>)
 
     let addPost = () => {
-        props.dispatch({type: 'ADD-POST', newPostText: props.profilePage.newPostText});
+        props.dispatch({type: ADD_POST, newPostText: props.profilePage.newPostText});
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value;
-        props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text});
+        props.dispatch({type: UPDATE_NEW_POST_TEXT, newText: text});
     }
 
     return (
