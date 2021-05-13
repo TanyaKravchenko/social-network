@@ -1,14 +1,14 @@
 import React from 'react';
 import classes from './Friends.module.css';
 import Friend from './Friend/Friend';
-import {SiteBarType} from '../../redux/state';
+import {SidebarType} from '../../redux/state';
 
 type FriendsType = {
-    siteBar: SiteBarType
+    sidebar: SidebarType
 }
 
 const Friends: React.FC<FriendsType> = (props) => {
-    let frendsBlock = props.siteBar.friendsBlock.map(f => <Friend key={f.id} avatar={f.avatar} friendName={f.friendName} id={f.id}/>)
+    let frendsBlock = props.sidebar.friendsBlock.map(f => <Friend key={f.id} avatar={f.avatar} friendName={f.friendName} id={f.id}/>)
     return (
         <div className={classes.headerFriends}>
             <div className={classes.titleFriends}>

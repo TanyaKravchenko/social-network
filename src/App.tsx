@@ -21,7 +21,7 @@ const App: React.FC<AppType> = (props) => {
         <div className={'app-wrapper'}>
             <Header/>
             <Navbar/>
-            <Friends siteBar={props.state.siteBar}/>
+            <Friends sidebar={props.state.sidebar}/>
             <div className="app-wrapper-content">
                 <Route path='/profile' render={() =>
                     <Profile profilePage={props.state.profilePage}
