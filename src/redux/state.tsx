@@ -174,4 +174,25 @@ let store: StoreType = {
     }
 }
 
+export const addPostActionCreator = (newPostText: string):AddPostType => {
+    return {
+        type: ADD_POST,
+        newPostText: newPostText}
+}
+export const updateNewPostTextActionCreator = (newText: string):UpdateNewPostTextType => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: newText}
+}
+export const addNewMessageActionCreator = (newMessageText: string):AddNewMessageTextType => {
+    return {
+        type: ADD_NEW_MESSAGE_TEXT,
+        newMessageText: newMessageText}
+}
+export const updateNewMessageActionCreator = (updateNewMessageText: string):UpdateNewMessageTextType => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        updateNewMessageText: updateNewMessageText}
+}
+
 export default store;
