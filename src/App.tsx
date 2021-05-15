@@ -11,6 +11,7 @@ import Settings from './components/Settings/Settings';
 import {ActionType} from './redux/store';
 import Friends from './components/Friends/Friends';
 import {AppStateType} from './redux/redux-store';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 type AppType = {
     state: AppStateType
@@ -28,7 +29,7 @@ const App: React.FC<AppType> = (props) => {
                     <Profile profilePage={props.state.profileReducer}
                              dispatch={props.dispatch}/>}/>
                 <Route path='/dialogs' render={() =>
-                    <Dialogs dialogsPage={props.state.dialogsReducer}
+                    <DialogsContainer dialogsPage={props.state.dialogsReducer}
                              dispatch={props.dispatch}/>}/>
                 <Route path='/news' component={News}/>
                 <Route path='/music' component={Music}/>

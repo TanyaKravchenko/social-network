@@ -4,12 +4,12 @@ import {AppStateType, RootReducerType} from '../../../../redux/redux-store';
 import {ActionType, ProfilePageType} from '../../../../redux/store';
 import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../../redux/profile-reducer';
 
-export type MyPostsType = {
+export type MyPostsContainerType = {
     profilePage: ProfilePageType
     dispatch: (action: ActionType) => void
 }
 
-const MyPostsContainer: React.FC<MyPostsType> = (props) => {
+const MyPostsContainer: React.FC<MyPostsContainerType> = (props) => {
 
     let addPost = () => {
         props.dispatch(addPostActionCreator(props.profilePage.newPostText));
