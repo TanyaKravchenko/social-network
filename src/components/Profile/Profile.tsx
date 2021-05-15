@@ -1,7 +1,7 @@
 import React from 'react';
-import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import {ActionType, ProfilePageType} from '../../redux/store';
+import MyPostsContainer from './MyPosts/Post/MyPostsContainer';
 
 type ProfileType = {
     profilePage: ProfilePageType
@@ -12,8 +12,8 @@ const Profile: React.FC<ProfileType> = (props) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts profilePage={props.profilePage}
-                     dispatch={props.dispatch}/>
+            <MyPostsContainer profilePage={props.profilePage}
+                              dispatch={props.dispatch}/>
         </div>
     );
 }

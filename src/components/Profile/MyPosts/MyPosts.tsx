@@ -1,15 +1,12 @@
 import React, {ChangeEvent} from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import {
-    addPostActionCreator,
-    updateNewPostTextActionCreator
-} from '../../../redux/profile-reducer';
-import {ActionType, ProfilePageType} from '../../../redux/store';
+import {ProfilePageType} from '../../../redux/store';
 
 export type MyPostsType = {
     profilePage: ProfilePageType
-    dispatch: (action: ActionType) => void
+    addPost: () => void
+    updateNewPostText: (text: string) => void
 }
 
 const MyPosts: React.FC<MyPostsType> = (props) => {
@@ -20,12 +17,12 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
               likes={post.likes}/>)
 
     let addPost = () => {
-        props.dispatch(addPostActionCreator(props.profilePage.newPostText));
+        props.addPost();
     }
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value;
-        props.dispatch(updateNewPostTextActionCreator(text));
+        props.updateNewPostText(text)
     }
 
     return (
