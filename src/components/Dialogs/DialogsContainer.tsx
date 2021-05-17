@@ -10,13 +10,18 @@ import Dialogs from './Dialogs';
 type DialogsContainerType = {
     dialogsPage: DialogsPageType;
     dispatch: (action: ActionType) => void
-
 };
 
 const DialogsContainer: React.FC<DialogsContainerType> = (props) => {
 
     let addMessage = () => {
-        props.dispatch(addNewMessageActionCreator(props.dialogsPage.newMessageText));
+        if (props.dialogsPage.newMessageText.trim() !== '') {
+            props.dispatch(addNewMessageActionCreator(props.dialogsPage.newMessageText.trim()));
+            props.dialogsPage.newMessageText = '';
+        } else {
+            alert('Error. Нужно доделать')
+        }
+
     };
 
     let onMessageChange = (textMessage: string) => {

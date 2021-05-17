@@ -1,6 +1,5 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import MyPosts from '../MyPosts';
-import {AppStateType, RootReducerType} from '../../../../redux/redux-store';
 import {ActionType, ProfilePageType} from '../../../../redux/store';
 import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../../redux/profile-reducer';
 
@@ -12,7 +11,12 @@ export type MyPostsContainerType = {
 const MyPostsContainer: React.FC<MyPostsContainerType> = (props) => {
 
     let addPost = () => {
-        props.dispatch(addPostActionCreator(props.profilePage.newPostText));
+        if (props.profilePage.newPostText.trim() !== '') {
+            props.dispatch(addPostActionCreator(props.profilePage.newPostText.trim()));
+            props.profilePage.newPostText = '';
+        } else {
+            alert('Error. Нужно доделать')
+        }
     }
 
     let onPostChange = (text: string) => {

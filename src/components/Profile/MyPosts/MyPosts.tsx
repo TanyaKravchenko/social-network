@@ -33,6 +33,7 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
                     <textarea
                         onChange={onPostChange}
                         value={props.profilePage.newPostText}
+                        placeholder={'Enter your message'}
                     />
                 </div>
                 <div>
