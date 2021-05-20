@@ -1,12 +1,14 @@
 import React, {ChangeEvent} from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ProfilePageType} from '../../../redux/store';
+import {InitialStateType} from '../../../redux/profile-reducer';
+
 
 export type MyPostsType = {
-    profilePage: ProfilePageType
+    profilePage: InitialStateType
     addPost: () => void
-    updateNewPostText: (text: string) => void
+    onPostChange: (text: string) => void
+    // posts: Array<PostType>
 }
 
 const MyPosts: React.FC<MyPostsType> = (props) => {
@@ -22,7 +24,7 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
 
     let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value;
-        props.updateNewPostText(text)
+        props.onPostChange(text)
     }
 
     return (

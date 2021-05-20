@@ -19,13 +19,14 @@ export type MessageType = {
     message: string
 }
 
-type InitialStateType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-    newMessageText: string
-}
+// export type InitialStateType = {
+//     dialogs: Array<DialogType>
+//     messages: Array<MessageType>
+//     newMessageText: string
+// }
+export type InitialStateType = typeof initialState
 
-type ActionType =
+export type ActionType =
     AddNewMessageTextType |
     UpdateNewMessageTextType
 
@@ -39,7 +40,7 @@ type UpdateNewMessageTextType = {
     updateNewMessageText: string
 }
 
-let initialState: InitialStateType = {
+let initialState = {
     dialogs: [
         {id: v1(), name: 'Dimych', avatar: src1},
         {id: v1(), name: 'Sveta', avatar: src2},
@@ -55,7 +56,7 @@ let initialState: InitialStateType = {
     newMessageText: ''
 }
 
-const dialogsReducer = (state = initialState, action: ActionType): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
         case ADD_NEW_MESSAGE_TEXT:
             let newMessage: MessageType = {

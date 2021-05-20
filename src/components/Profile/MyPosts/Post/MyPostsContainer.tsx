@@ -1,36 +1,59 @@
 import React from 'react';
 import MyPosts from '../MyPosts';
-import {ActionType, ProfilePageType} from '../../../../redux/store';
-import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../../redux/profile-reducer';
+import {
+    ActionType,
+    addPostActionCreator,
+    updateNewPostTextActionCreator
+} from '../../../../redux/profile-reducer';
+import store, {AppStateType} from '../../../../redux/redux-store';
+import {connect} from 'react-redux';
 
-export type MyPostsContainerType = {
-    profilePage: ProfilePageType
-    dispatch: (action: ActionType) => void
+const mapStateToProps = (state: AppStateType) => {
+    debugger
+    return {
+        profilePage: state.profileReducer
+    }
 }
-
-const MyPostsContainer: React.FC<MyPostsContainerType> = (props) => {
-
-    let addPost = () => {
-        if (props.profilePage.newPostText.trim() !== '') {
-            props.dispatch(addPostActionCreator(props.profilePage.newPostText.trim()));
-            props.profilePage.newPostText = '';
-        } else {
-            alert('Error. Нужно доделать')
+const mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
+    return {
+        addPost: () => {
+            if (store.getState().profileReducer.newPostText.trim() !== '') {
+                dispatch(addPostActionCreator(store.getState().profileReducer.newPostText.trim()));
+                store.getState().profileReducer.newPostText = '';
+            } else {
+                alert('Error. Нужно доделать')
+            }
+        },
+        onPostChange: (text: string) => {
+            dispatch(updateNewPostTextActionCreator(text));
         }
     }
-
-    let onPostChange = (text: string) => {
-        props.dispatch(updateNewPostTextActionCreator(text));
-    }
-
-    return (
-        <div>
-            <MyPosts
-                addPost={addPost}
-                updateNewPostText={onPostChange}
-                profilePage={props.profilePage}/>
-        </div>
-    );
 }
+const MyPostsContainer = connect (mapStateToProps, mapDispatchToProps) (MyPosts);
 
 export default MyPostsContainer;
+
+// const MyPostsContainer: React.FC = (props) => {
+//     debugger
+//     let addPost = () => {
+//         if (props.profilePage.newPostText.trim() !== '') {
+//             props.dispatch(addPostActionCreator(props.profilePage.newPostText.trim()));
+//             props.profilePage.newPostText = '';
+//         } else {
+//             alert('Error. Нужно доделать')
+//         }
+//     }
+//
+//     let onPostChange = (text: string) => {
+//         props.dispatch(updateNewPostTextActionCreator(text));
+//     }
+//
+//     return (
+//         <div>
+//             <MyPosts
+//                 addPost={addPost}
+//                 updateNewPostText={onPostChange}
+//                 profilePage={props.profilePage}/>
+//         </div>
+//     );
+// }

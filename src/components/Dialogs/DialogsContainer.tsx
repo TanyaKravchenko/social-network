@@ -1,41 +1,32 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
 import {
-    addNewMessageActionCreator,
+    ActionType,
+    addNewMessageActionCreator, InitialStateType,
     updateNewMessageActionCreator
 } from '../../redux/dialogs-reducer';
-import {ActionType, DialogsPageType} from '../../redux/store';
 import Dialogs from './Dialogs';
+import {connect} from 'react-redux';
+import store, {AppStateType} from '../../redux/redux-store';
 
-type DialogsContainerType = {
-    dialogsPage: DialogsPageType;
-    dispatch: (action: ActionType) => void
-};
 
-const DialogsContainer: React.FC<DialogsContainerType> = (props) => {
-
-    let addMessage = () => {
-        if (props.dialogsPage.newMessageText.trim() !== '') {
-            props.dispatch(addNewMessageActionCreator(props.dialogsPage.newMessageText.trim()));
-            props.dialogsPage.newMessageText = '';
-        } else {
-            alert('Error. Нужно доделать')
-        }
-
-    };
-
-    let onMessageChange = (textMessage: string) => {
-        props.dispatch(updateNewMessageActionCreator(textMessage));
+const mapStateToProps = (state: AppStateType) => {
+    return {
+        dialogsPage: state.dialogsReducer
     }
+}
+const mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
+    return {
+        onMessageChange: () => {
+            dispatch(addNewMessageActionCreator(store.getState().dialogsReducer.newMessageText.trim()));
+        },
+        addNewMessage: () => {
+            dispatch(updateNewMessageActionCreator(store.getState().dialogsReducer.newMessageText));
+        }
+    }
+}
 
-    return (
-        <div className={classes.dialogs}>
-            <Dialogs dialogsPage={props.dialogsPage}
-                     addNewMessage={addMessage}
-                     onMessageChange={onMessageChange}
-            />
-        </div>
-    );
-};
+const DialogsContainer = connect (mapStateToProps, mapDispatchToProps) (Dialogs);
 
 export default DialogsContainer;
+

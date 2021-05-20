@@ -3,15 +3,15 @@ import profileReducer from './profile-reducer';
 import dialogsReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 
-export type RootReducerType = typeof rootReducers;
-export type AppStateType = ReturnType<RootReducerType>
+export type RootStateType = typeof rootReducer
+export type AppStateType = ReturnType<RootStateType>
 
-let rootReducers = combineReducers({
+let rootReducer = combineReducers({
     profileReducer: profileReducer,
     dialogsReducer: dialogsReducer,
     sidebarReducer: sidebarReducer,
 })
 
-let store = createStore(rootReducers);
+let store = createStore(rootReducer);
 
 export default store;

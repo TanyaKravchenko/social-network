@@ -9,12 +9,12 @@ type PostType = {
     likes: number
 }
 
-type InitialStateType = {
-    posts: Array<PostType>
-    newPostText: string
-}
+// export type InitialStateType = {
+//     posts: Array<PostType>
+//     newPostText: string
+// }
 
-// type AddPostActionCreatorType = ReturnType<typeof addPostActionCreator>
+export type InitialStateType = typeof initialState
 
 type AddPostType = {
     type: 'ADD-POST'
@@ -26,11 +26,11 @@ type UpdateNewPostTextType = {
     newText: string
 }
 
-type ActionType =
+export type ActionType =
     AddPostType |
     UpdateNewPostTextType
 
-let initialState: InitialStateType = {
+let initialState = {
     posts: [
         {id: v1(), message: 'HiHello', likes: 5},
         {id: v1(), message: 'YoHello', likes: 15}
@@ -38,7 +38,7 @@ let initialState: InitialStateType = {
     newPostText: ''
 }
 
-const profileReducer = (state = initialState, action: ActionType): InitialStateType => {
+const profileReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType = {

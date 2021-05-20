@@ -1,19 +1,21 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {ActionType, ProfilePageType} from '../../redux/store';
 import MyPostsContainer from './MyPosts/Post/MyPostsContainer';
+import {AppStateType, RootStateType} from '../../redux/redux-store';
+import {InitialStateType} from '../../redux/profile-reducer';
 
 type ProfileType = {
-    profilePage: ProfilePageType
-    dispatch: (action: ActionType) => void
+    profilePage: InitialStateType
+    // addPost: () => void
+    // onPostChange: (text: string) => void
 }
 
 const Profile: React.FC<ProfileType> = (props) => {
+    debugger
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer profilePage={props.profilePage}
-                              dispatch={props.dispatch}/>
+            <MyPostsContainer />
         </div>
     );
 }

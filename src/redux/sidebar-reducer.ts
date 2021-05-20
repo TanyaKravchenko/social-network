@@ -3,17 +3,21 @@ import src1 from '../images/avatar3.jpg';
 import src2 from '../images/avatar5.jpg';
 import src3 from '../images/avatar4.jpeg';
 
-type FriendsBlockType = {
-    id: string
-    friendName: string
-    avatar: string
-}
+// type FriendsBlockType = {
+//     id: string
+//     friendName: string
+//     avatar: string
+// }
 
-type InitialStateType = {
-    friendsBlock: Array<FriendsBlockType>
-}
+// export type InitialStateType = {
+//     friendsBlock: Array<FriendsBlockType>
+// }
 
-let initialState: InitialStateType = {
+export type InitialStateType = typeof initialState
+
+
+
+let initialState = {
     friendsBlock: [
         {id: v1(), friendName: 'Kostya', avatar: src1},
         {id: v1(), friendName: 'Masha', avatar: src2},
