@@ -2,17 +2,19 @@ import React, {ChangeEvent} from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 import {InitialStateType} from '../../../redux/profile-reducer';
+import {PostType} from '../../../redux/store';
 
 
 export type MyPostsType = {
-    profilePage: InitialStateType
+    //profilePage: InitialStateType
     addPost: () => void
     onPostChange: (text: string) => void
-    // posts: Array<PostType>
+    posts: Array<PostType>
+    newPostText: string
 }
 
 const MyPosts: React.FC<MyPostsType> = (props) => {
-    let postsElement = props.profilePage.posts.map(post =>
+    let postsElement = props.posts.map(post =>
         <Post key={post.id}
               id={post.id}
               message={post.message}
@@ -34,7 +36,7 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
                 <div>
                     <textarea
                         onChange={onPostChange}
-                        value={props.profilePage.newPostText}
+                        value={props.newPostText}
                         placeholder={'Enter your message'}
                     />
                 </div>

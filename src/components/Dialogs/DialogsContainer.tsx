@@ -17,10 +17,10 @@ const mapStateToProps = (state: AppStateType) => {
 }
 const mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
     return {
-        onMessageChange: () => {
+        addNewMessage: () => {
             dispatch(addNewMessageActionCreator(store.getState().dialogsReducer.newMessageText.trim()));
         },
-        addNewMessage: () => {
+        onMessageChange: () => {
             dispatch(updateNewMessageActionCreator(store.getState().dialogsReducer.newMessageText));
         }
     }

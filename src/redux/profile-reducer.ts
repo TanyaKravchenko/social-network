@@ -18,7 +18,7 @@ export type InitialStateType = typeof initialState
 
 type AddPostType = {
     type: 'ADD-POST'
-    newPostText: string
+    //newPostText: string
 }
 
 type UpdateNewPostTextType = {
@@ -59,10 +59,10 @@ const profileReducer = (state = initialState, action: ActionType) => {
     }
 }
 
-export const addPostActionCreator = (newPostText: string): AddPostType => {
+export const addPostActionCreator = (): AddPostType => {
     return {
         type: ADD_POST,
-        newPostText: newPostText
+        // newPostText: newPostText
     }
 }
 export const updateNewPostTextActionCreator = (newText: string): UpdateNewPostTextType => {
