@@ -32,7 +32,7 @@ export type ActionType =
 
 type AddNewMessageTextType = {
     type: 'ADD-NEW-MESSAGE-TEXT'
-    newMessageText: string
+    // newMessageText: string
 }
 
 type UpdateNewMessageTextType = {
@@ -64,24 +64,23 @@ const dialogsReducer = (state = initialState, action: ActionType) => {
                 message: state.newMessageText,
             }
             // state.messages.push(newMessage);
-            // state.newMessageText = '';
+            state.newMessageText = '';
             return {
                 ...state,
                 messages: [...state.messages, newMessage]
             };
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.updateNewMessageText;
-            return {
-                ...state,
-            }
+            let stateCopy = {...state}
+            stateCopy.newMessageText = action.updateNewMessageText;
+            return stateCopy
         default:
             return state;
     }
 }
-export const addNewMessageActionCreator = (newMessageText: string): AddNewMessageTextType => {
+export const addNewMessageActionCreator = (): AddNewMessageTextType => {
     return {
         type: ADD_NEW_MESSAGE_TEXT,
-        newMessageText: newMessageText
+        // newMessageText: newMessageText
     }
 }
 export const updateNewMessageActionCreator = (updateNewMessageText: string): UpdateNewMessageTextType => {

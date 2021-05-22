@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Dialogs.module.css';
 import {
     ActionType,
-    addNewMessageActionCreator, InitialStateType,
+    addNewMessageActionCreator,
     updateNewMessageActionCreator
 } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
@@ -16,12 +16,13 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 const mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
+    debugger
     return {
         addNewMessage: () => {
-            dispatch(addNewMessageActionCreator(store.getState().dialogsReducer.newMessageText.trim()));
+            dispatch(addNewMessageActionCreator());
         },
-        onMessageChange: () => {
-            dispatch(updateNewMessageActionCreator(store.getState().dialogsReducer.newMessageText));
+        onMessageChange: (newMessageText: string) => {
+            dispatch(updateNewMessageActionCreator(newMessageText));
         }
     }
 }

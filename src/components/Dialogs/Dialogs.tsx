@@ -8,7 +8,7 @@ type DialogsType = {
     onMessageChange: (textMessage: string) => void
     addNewMessage: () => void
     dialogsPage: InitialStateType;
-};
+}
 
 const Dialogs: React.FC<DialogsType> = (props) => {
     let dialogsElements = props.dialogsPage.dialogs.map((d) => (
