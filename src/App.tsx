@@ -8,8 +8,9 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Friends from './components/Friends/Friends';
-import store, {AppStateType, RootStateType} from './redux/redux-store';
+import {AppStateType} from './redux/redux-store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import UsersContainer from './components/Settings/UsersContainer';
 
 
 type AppType = {
@@ -21,12 +22,14 @@ const App: React.FC<AppType> = (props) => {
         <div className={'app-wrapper'}>
             <Header/>
             <Navbar/>
-            <Friends sidebar={props.state.sidebarReducer}/>
+            <Friends sidebar={props.state.sidebar}/>
             <div className="app-wrapper-content">
                 <Route path="/profile" render={() =>
-                    <Profile profilePage={props.state.profileReducer}/>}/>
+                    <Profile profilePage={props.state.profilePage}/>}/>
                 <Route path="/dialogs" render={() =>
-                    <DialogsContainer/>}/>
+                    <DialogsContainer />}/>
+                <Route path="/users" render={() =>
+                    <UsersContainer />}/>
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>
@@ -34,5 +37,4 @@ const App: React.FC<AppType> = (props) => {
         </div>
     );
 }
-
 export default App;

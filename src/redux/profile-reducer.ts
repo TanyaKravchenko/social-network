@@ -1,4 +1,4 @@
-import {v1} from 'uuid';
+import {v1} from 'uuid'
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -8,11 +8,6 @@ type PostType = {
     message: string
     likes: number
 }
-
-// export type InitialStateType = {
-//     posts: Array<PostType>
-//     newPostText: string
-// }
 
 export type InitialStateType = typeof initialState
 
@@ -38,7 +33,7 @@ let initialState = {
     newPostText: ''
 }
 
-const profileReducer = (state = initialState, action: ActionType) => {
+const profileReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType = {
@@ -46,17 +41,22 @@ const profileReducer = (state = initialState, action: ActionType) => {
                 message: state.newPostText,
                 likes: 0
             }
-            // state.posts.push(newPost);
-            //state.newPostText = '';
+            if (state.newPostText.trim() !== '') {
+            } else {
+                alert('Error. Нужно доделать')
+            }
             return {
                 ...state,
+                newPostText: '',
                 posts: [...state.posts, newPost]
             };
         case UPDATE_NEW_POST_TEXT:
-            let stateCopy = {...state}
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
-        default: return state;
+            return {
+                ...state,
+                newPostText: action.newText
+            };
+        default:
+            return state;
     }
 }
 

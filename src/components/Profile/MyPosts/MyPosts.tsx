@@ -1,7 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import {InitialStateType} from '../../../redux/profile-reducer';
 import {PostType} from '../../../redux/store';
 
 

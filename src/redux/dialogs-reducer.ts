@@ -19,11 +19,6 @@ export type MessageType = {
     message: string
 }
 
-// export type InitialStateType = {
-//     dialogs: Array<DialogType>
-//     messages: Array<MessageType>
-//     newMessageText: string
-// }
 export type InitialStateType = typeof initialState
 
 export type ActionType =
@@ -63,16 +58,16 @@ const dialogsReducer = (state = initialState, action: ActionType) => {
                 id: v1(),
                 message: state.newMessageText,
             }
-            // state.messages.push(newMessage);
-            state.newMessageText = '';
             return {
                 ...state,
+                newMessageText: '',
                 messages: [...state.messages, newMessage]
             };
         case UPDATE_NEW_MESSAGE_TEXT:
-            let stateCopy = {...state}
-            stateCopy.newMessageText = action.updateNewMessageText;
-            return stateCopy
+            return {
+                ...state,
+                newMessageText: action.updateNewMessageText
+            }
         default:
             return state;
     }
