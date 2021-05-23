@@ -1,4 +1,7 @@
 import {v1} from 'uuid'
+import src1 from '../images/avatar3.jpg';
+import src2 from '../images/avatar5.jpg';
+import src3 from '../images/avatar4.jpeg';
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -14,6 +17,7 @@ type LocationType = {
 
 export type UserType = {
     id: string
+    photo: string
     followed: boolean
     fullName: string
     status: string
@@ -43,6 +47,7 @@ let initialState = {
     users: [
         {
             id: v1(),
+            photo: src1,
             followed: false,
             fullName: 'Dmitry',
             status: 'I am a boss',
@@ -50,6 +55,7 @@ let initialState = {
         },
         {
             id: v1(),
+            photo: src2,
             followed: false,
             fullName: 'Sasha',
             status: 'I am a boss too',
@@ -57,6 +63,7 @@ let initialState = {
         },
         {
             id: v1(),
+            photo: src3,
             followed: true,
             fullName: 'Andrew',
             status: 'And I am a boss)))',
