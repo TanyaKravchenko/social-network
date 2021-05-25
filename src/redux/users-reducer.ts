@@ -15,11 +15,16 @@ type LocationType = {
     country: string
 }
 
+type PhotoType = {
+    small: any
+    large: any
+}
+
 export type UserType = {
     id: string
-    photo: string
+    photos: any
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: LocationType
 }
@@ -47,25 +52,25 @@ let initialState = {
     users: [
         {
             id: v1(),
-            photo: src1,
+            photos: src1,
             followed: false,
-            fullName: 'Dmitry',
+            name: 'Dmitry',
             status: 'I am a boss',
             location: {city: 'Minsk', country: 'Belarus'}
         },
         {
             id: v1(),
-            photo: src2,
+            photos: src2,
             followed: false,
-            fullName: 'Sasha',
+            name: 'Sasha',
             status: 'I am a boss too',
             location: {city: 'Moscow', country: 'Russia'}
         },
         {
             id: v1(),
-            photo: src3,
+            photos: src3,
             followed: true,
-            fullName: 'Andrew',
+            name: 'Andrew',
             status: 'And I am a boss)))',
             location: {city: 'Kiev', country: 'Ukraine'}
         },
