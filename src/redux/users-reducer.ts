@@ -29,6 +29,15 @@ export type UserType = {
     location: LocationType
 }
 
+export type UsersType = {
+    users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isFetching: boolean
+    followingInProgress: Array<string>
+}
+
 type FollowACType = {
     type: 'FOLLOW'
     userId: string
@@ -48,36 +57,16 @@ export type ActionType =
     UnfollowACType |
     SetUsersACType
 
-let initialState = {
-    users: [
-        {
-            id: v1(),
-            photos: src1,
-            followed: false,
-            name: 'Dmitry',
-            status: 'I am a boss',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: v1(),
-            photos: src2,
-            followed: false,
-            name: 'Sasha',
-            status: 'I am a boss too',
-            location: {city: 'Moscow', country: 'Russia'}
-        },
-        {
-            id: v1(),
-            photos: src3,
-            followed: true,
-            name: 'Andrew',
-            status: 'And I am a boss)))',
-            location: {city: 'Kiev', country: 'Ukraine'}
-        },
-    ]
+let initialState: UsersType = {
+    users: [],
+    pageSize: 10,
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: false,
+    followingInProgress: []
 }
 
-const usersReducer = (state = initialState, action: ActionType): InitialStateType => {
+const usersReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
         case FOLLOW:
             return {
