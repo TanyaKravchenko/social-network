@@ -1,8 +1,3 @@
-import {v1} from 'uuid'
-import src1 from '../images/avatar3.jpg';
-import src2 from '../images/avatar5.jpg';
-import src3 from '../images/avatar4.jpeg';
-
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'

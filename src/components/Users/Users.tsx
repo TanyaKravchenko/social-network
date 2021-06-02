@@ -3,9 +3,6 @@ import {UserType} from '../../redux/users-reducer';
 import classes from '../Users/Users.module.css';
 import src3 from '../../images/avatar4.jpeg';
 import axios from 'axios';
-import {v1} from 'uuid';
-import src1 from '../../images/avatar3.jpg';
-import src2 from '../../images/avatar5.jpg';
 
 type UsersPropsType = {
     users: Array<UserType>
@@ -15,18 +12,18 @@ type UsersPropsType = {
 }
 
 const Users: React.FC<UsersPropsType> = (props) => {
-    debugger
-
+let getUsers = () => {
     if (props.users.length === 0) {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then((response) => {
-                debugger
                 props.setUsers(response.data.items)
             })
     }
+}
 
     return (
         <div className={classes.usersItemContainer}>
+            <button onClick={getUsers}>Get Users</button>
             {props.users.map(u => <div key={u.id} className={classes.usersItem}>
                 <span>
                     <div>
