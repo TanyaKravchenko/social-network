@@ -11,20 +11,20 @@ type UsersPropsType = {
     setUsers: (users: Array<UserType>) => void
 }
 
-const Users: React.FC<UsersPropsType> = (props) => {
-let getUsers = () => {
-    if (props.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then((response) => {
-                props.setUsers(response.data.items)
-            })
+class User extends React.Component<UsersPropsType>{
+    getUsers = () => {
+        if (this.props.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users')
+                .then((response) => {
+                    this.props.setUsers(response.data.items)
+                })
+        }
     }
-}
-
+render() {
     return (
         <div className={classes.usersItemContainer}>
-            <button onClick={getUsers}>Get Users</button>
-            {props.users.map(u => <div key={u.id} className={classes.usersItem}>
+            <button onClick={this.getUsers}>Get Users</button>
+            {this.props.users.map(u => <div key={u.id} className={classes.usersItem}>
                 <span>
                     <div>
                         <img src={u.photos.small !== null ? u.photos.small : src3} alt={'photo'}
@@ -33,10 +33,10 @@ let getUsers = () => {
                     <div>
                         {u.followed
                             ? <button onClick={() => {
-                                props.unfollow(u.id)
+                                this.props.unfollow(u.id)
                             }}>Unfollow</button>
                             : <button onClick={() => {
-                                props.follow(u.id)
+                                this.props.follow(u.id)
                             }}>Follow</button>
                         }
 
@@ -56,4 +56,5 @@ let getUsers = () => {
         </div>
     );
 }
-export default Users;
+}
+export default User;
