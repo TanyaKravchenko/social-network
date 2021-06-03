@@ -2,7 +2,6 @@ const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
-
 export type InitialStateType = typeof initialState
 
 type LocationType = {
