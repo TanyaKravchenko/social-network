@@ -6,7 +6,9 @@ import {ActionType, followAC, setUsersAC, unfollowAC, UserType} from '../../redu
 
 const mapStateToProps = (state: AppStateType) => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount
     }
 }
 const mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
