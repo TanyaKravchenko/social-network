@@ -1,7 +1,7 @@
 import React from 'react';
 import {UserType} from '../../redux/users-reducer';
 import classes from '../Users/Users.module.css';
-import src3 from '../../images/avatar4.jpeg';
+import src3 from '../../images/avatar3.jpg';
 import axios from 'axios';
 
 type UsersPropsType = {
@@ -11,6 +11,7 @@ type UsersPropsType = {
     setUsers: (users: Array<UserType>) => void
     pageSize: number
     totalUsersCount: number
+    currentPage: number
 }
 
 class Users extends React.Component<UsersPropsType> {
@@ -22,7 +23,7 @@ class Users extends React.Component<UsersPropsType> {
     }
 
     render() {
-        let pageCount = this.props.totalUsersCount/this.props.pageSize
+        let pageCount = Math.ceil(this.props.totalUsersCount/this.props.pageSize)
         let pages = [];
         for (let i=1; i<= pageCount; i++) {
             pages.push(i);
@@ -31,7 +32,7 @@ class Users extends React.Component<UsersPropsType> {
             <div className={classes.usersItemContainer}>
                 <div>
                     {pages.map(p => {
-                        <span className={classes}>{p}</span>
+                        return <span className={this.props.currentPage === p && classes.selectedPage}>{p}</span>
                     })}
 
                 </div>

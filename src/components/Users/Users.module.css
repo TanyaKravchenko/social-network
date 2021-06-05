@@ -11,3 +11,7 @@ padding: 20px 0px 0px 20px;
 .usersItem {
     padding-bottom: 25px;
 }
+
+.selectedPage {
+    font-weight: bold;
+}
