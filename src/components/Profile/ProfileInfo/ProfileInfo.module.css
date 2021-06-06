@@ -1,3 +1,7 @@
 .descriptionBlock {
     padding: 10px;
 }
+
+.ProfilePhotos img {
+    border-radius: 50px;
+}
