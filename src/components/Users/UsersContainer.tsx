@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {
     ActionType,
-    followAC,
-    setCurrentPageAC,
-    setUsersAC,
-    setUsersTotalCountAC, toggleIsFetchingAC,
-    unfollowAC,
+    follow,
+    setCurrentPage,
+    setUsers,
+    setUsersTotalCount, toggleIsFetching,
+    unfollow,
     UserType
 } from '../../redux/users-reducer';
 import axios from 'axios';
@@ -101,10 +101,10 @@ const mapStateToProps = (state: AppStateType) => {
 
 export default connect(mapStateToProps,
     {
-        follow: followAC,
-        unfollow: unfollowAC,
-        setUsers: setUsersAC,
-        setCurrentPage: setCurrentPageAC,
-        setUsersTotalCount: setUsersTotalCountAC,
-        toggleIsFetching: toggleIsFetchingAC
+        follow,
+        unfollow,
+        setUsers,
+        setCurrentPage,
+        setUsersTotalCount,
+        toggleIsFetching
     })(UsersContainer);
