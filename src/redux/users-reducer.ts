@@ -1,6 +1,7 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 
 export type InitialStateType = typeof initialState
 
@@ -46,15 +47,21 @@ type SetUsersACType = {
     type: 'SET_USERS'
     users: Array<UserType>
 }
+type SetCurrentPageACType = {
+    type: 'SET_CURRENT_PAGE'
+    currentPage: number
+}
+
 export type ActionType =
     FollowACType |
     UnfollowACType |
-    SetUsersACType
+    SetUsersACType |
+    SetCurrentPageACType
 
 let initialState: UsersType = {
     users: [],
     pageSize: 10,
-    totalUsersCount: 0,
+    totalUsersCount: 20,
     currentPage: 1,
     isFetching: false,
     followingInProgress: []
@@ -87,6 +94,11 @@ const usersReducer = (state = initialState, action: ActionType) => {
                 ...state,
                 users: [...state.users, ...action.users]
             };
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage
+            };
         default:
             return state;
     }
@@ -95,5 +107,6 @@ const usersReducer = (state = initialState, action: ActionType) => {
 export const followAC = (userId: string): FollowACType => ({type: FOLLOW, userId})
 export const unfollowAC = (userId: string): UnfollowACType => ({type: UNFOLLOW, userId})
 export const setUsersAC = (users: Array<UserType>): SetUsersACType => ({type: SET_USERS, users})
+export const setCurrentPageAC = (currentPage: number): SetCurrentPageACType => ({type: SET_CURRENT_PAGE, currentPage})
 export default usersReducer;
 
