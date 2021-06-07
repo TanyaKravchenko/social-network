@@ -19,7 +19,8 @@ type SetUsrDataType = {
 let initialState = {
     userId: null,
     email: null,
-    login: null
+    login: null,
+    isAuth: false
 }
 
 const authReducer = (state = initialState, action: ActionType) => {
@@ -27,13 +28,14 @@ const authReducer = (state = initialState, action: ActionType) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth: true
             };
         default:
             return state;
     }
 }
-export const setUserData = (userId: string, email: string, login: string): SetUsrDataType => {
+export const setAuthUserData = (userId: string, email: string, login: string): SetUsrDataType => {
     return {
         type: SET_USER_DATA,
         data: {userId, email, login}
