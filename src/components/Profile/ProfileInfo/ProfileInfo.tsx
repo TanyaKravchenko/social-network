@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
-import profileImg from '../../../images/anons.jpg';
 import {ProfileInfoType} from '../Profile';
 import Preloader from '../../common/Preloader/Preloader';
 import avatar from '../../../images/avatar3.jpg';

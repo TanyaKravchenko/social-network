@@ -1,4 +1,28 @@
 .header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 45px;
     grid-area: header;
     background: url('../../images/anons.jpg');
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: darkcyan;
+    font-size: 24px;
+    height: 50px;
+    width: 110px;
+    border-radius: 25px;
+}
+
+.login a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.login:hover {
+    opacity: 0.5;
 }

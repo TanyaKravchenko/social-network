@@ -19,7 +19,7 @@ type PhotoType = {
 
 export type UserType = {
     id: string
-    photos: any
+    photos: PhotoType
     followed: boolean
     name: string
     status: string

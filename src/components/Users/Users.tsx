@@ -32,13 +32,12 @@ const Users: React.FC<UsersPropsType> = (props) => {
                             {p}
                         </span>
                 })}
-
             </div>
             {props.users.map(u => <div key={u.id} className={classes.usersItem}>
                 <span>
                     <div>
                         <NavLink to={'/profile/' + u.id}>
-                             <img src={u.photos.small !== null ? u.photos.small : src3} alt={'photo'}
+                             <img src={u.photos.small !== null ? u.photos.large : src3} alt={'userImage'}
                                   className={classes.photoItem}/>
                         </NavLink>
                     </div>
