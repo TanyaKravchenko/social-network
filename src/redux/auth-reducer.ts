@@ -1,12 +1,9 @@
 export const SET_USER_DATA = 'SET_USER_DATA'
 
-export type ActionType =
-    SetUsrDataType
-
 type DataType = {
-    userId: string
-    email: string
-    login: string
+    userId: string | null
+    email: string | null
+    login: string | null
 }
 
 type SetUsrDataType = {
@@ -14,16 +11,19 @@ type SetUsrDataType = {
     data: DataType
 }
 
-//export type InitialStateType = typeof initialState
+export type ActionType =
+    SetUsrDataType
+
+export type InitialStateType = typeof initialState
 
 let initialState = {
-    userId: null,
-    email: null,
-    login: null,
+    id: null as (number | null),
+    email: null as string | null,
+    login: null as string | null,
     isAuth: false
 }
 
-const authReducer = (state = initialState, action: ActionType) => {
+const authReducer = (state = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case SET_USER_DATA:
             return {
@@ -35,7 +35,7 @@ const authReducer = (state = initialState, action: ActionType) => {
             return state;
     }
 }
-export const setAuthUserData = (userId: string, email: string, login: string): SetUsrDataType => {
+export const setAuthUserData = (userId: string | null, email: string | null, login: string | null): SetUsrDataType => {
     return {
         type: SET_USER_DATA,
         data: {userId, email, login}

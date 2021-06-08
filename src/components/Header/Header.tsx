@@ -4,7 +4,7 @@ import classes from './Header.module.css'
 
 type HeaderType = {
     isAuth: boolean
-    login: string
+    login: string | null
 }
 
 const Header = (props: HeaderType) => {
