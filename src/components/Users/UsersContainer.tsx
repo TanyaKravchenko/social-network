@@ -25,7 +25,8 @@ type UsersPropsType = {
     setUsersTotalCount: (totalCount: number) => void
     isFetching: boolean
     toggleIsFetching: (isFetching: boolean) => void
-    toggleFollowingProgress: (isFetching: boolean) => void
+    toggleFollowingProgress: (isFetching: boolean, userId: string) => void
+    followingInProgress: Array<string>
 }
 
 class UsersContainer extends React.Component<UsersPropsType> {
@@ -62,6 +63,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
                     unfollow={this.props.unfollow}
                     onPageChanged={this.onPageChanged}
                     toggleFollowingProgress={this.props.toggleFollowingProgress}
+                    followingInProgress={this.props.followingInProgress}
                 />
             </>
         );
