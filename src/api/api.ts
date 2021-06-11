@@ -15,5 +15,12 @@ export const usersAPI = {
             .then((response) => {
                 return response.data
             });
+    },
+
+    getUsers2(id: number) {
+        return instance.get(baseURL + `follow/${id}`)
+            .then((response) => {
+                return response.data
+            });
     }
 }
