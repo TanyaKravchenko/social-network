@@ -22,5 +22,14 @@ export const usersAPI = {
     unfollow(id: string) {
         return instance.delete(baseURL + `unfollow/${id}`)
     },
+    getProfile(userId: string) {
+        return axios.get(baseURL + `profile/` + userId);
+    }
+}
+
+export const authAPI = {
+    me() {
+        return instance.get(baseURL + `auth/me`)
+    }
 }
 

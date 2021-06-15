@@ -8,6 +8,7 @@ type DialogsType = {
     onMessageChange: (textMessage: string) => void
     addNewMessage: () => void
     dialogsPage: InitialStateType;
+    isAuth: boolean
 }
 
 const Dialogs: React.FC<DialogsType> = (props) => {
@@ -26,6 +27,8 @@ const Dialogs: React.FC<DialogsType> = (props) => {
         let textMessage = e.currentTarget.value;
         props.onMessageChange(textMessage);
     }
+
+   // if(!props.isAuth) return <Redirect to={'/login'} />
 
     return (
         <div className={classes.dialogs}>

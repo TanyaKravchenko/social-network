@@ -24,13 +24,14 @@ const Users: React.FC<UsersPropsType> = (props) => {
     return (
         <div className={classes.usersItemContainer}>
             <div>
-                {pages.map(p => {
+                {pages.map((page, index) => {
                     return <span
-                        className={props.currentPage === p ? classes.selectedPage : ' '}
+                        key={index}
+                        className={props.currentPage === page ? classes.selectedPage : ''}
                         onClick={(e) => {
-                            props.onPageChanged(p)
+                            props.onPageChanged(page)
                         }}>
-                            {p}
+                            {page}
                         </span>
                 })}
             </div>
