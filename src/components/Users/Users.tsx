@@ -16,23 +16,24 @@ type UsersPropsType = {
 }
 
 const Users: React.FC<UsersPropsType> = (props) => {
-    let pageCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+
     let pages = [];
-    for (let i = 1; i <= pageCount; i++) {
+    for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
     return (
         <div className={classes.usersItemContainer}>
             <div>
                 {pages.map((page, index) => {
+                    debugger
                     return <span
                         key={index}
                         className={props.currentPage === page ? classes.selectedPage : ''}
                         onClick={(e) => {
                             props.onPageChanged(page)
-                        }}>
-                            {page}
-                        </span>
+                        }}
+                    >{page}</span>
                 })}
             </div>
             {props.users.map(u => <div key={u.id} className={classes.usersItem}>

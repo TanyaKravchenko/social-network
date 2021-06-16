@@ -11,6 +11,7 @@ import {
     UserType
 } from '../../redux/users-reducer';
 import Preloader from '../common/Preloader/Preloader';
+import {compose} from 'redux';
 
 type UsersPropsType = {
     users: Array<UserType>
@@ -63,16 +64,18 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 
-export default connect(mapStateToProps,
-    {
-        follow: followSuccess,
-        unfollow: unfollowSuccess,
-        setUsers,
-        setCurrentPage,
-        setUsersTotalCount,
-        toggleFollowingProgress,
-        getUsers
-    })(UsersContainer);
+export default compose<React.ComponentType>(
+    connect(mapStateToProps,
+        {
+            follow: followSuccess,
+            unfollow: unfollowSuccess,
+            setUsers,
+            setCurrentPage,
+            setUsersTotalCount,
+            toggleFollowingProgress,
+            getUsers
+        })
+)(UsersContainer);
 
 
 // const mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
