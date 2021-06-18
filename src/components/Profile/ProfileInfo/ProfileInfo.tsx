@@ -3,6 +3,7 @@ import classes from './ProfileInfo.module.css';
 import {ProfileInfoType} from '../Profile';
 import Preloader from '../../common/Preloader/Preloader';
 import avatar from '../../../images/avatar3.jpg';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
     if (!props.profile) {
@@ -26,6 +27,9 @@ const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
                     </div>
                     <div>
                         {props.profile.contacts.github}
+                    </div>
+                    <div>
+                        <ProfileStatus status={'Hello!'} />
                     </div>
                 </div>
             </div>
