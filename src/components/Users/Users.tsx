@@ -26,7 +26,6 @@ const Users: React.FC<UsersPropsType> = (props) => {
         <div className={classes.usersItemContainer}>
             <div>
                 {pages.map((page, index) => {
-                    debugger
                     return <span
                         key={index}
                         className={props.currentPage === page ? classes.selectedPage : ''}
