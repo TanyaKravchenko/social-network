@@ -5,7 +5,6 @@ import {PostType} from '../../../redux/store';
 
 
 export type MyPostsType = {
-    //profilePage: InitialStateType
     addPost: () => void
     onPostChange: (text: string) => void
     posts: Array<PostType>

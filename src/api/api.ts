@@ -17,25 +17,22 @@ export const usersAPI = {
             });
     },
     follow(id: string) {
-        return instance.post(baseURL + `follow/${id}`)
+        return instance.post(`follow/${id}`)
     },
     unfollow(id: string) {
-        return instance.delete(baseURL + `unfollow/${id}`)
-    },
-    getProfile(userId: string) {
-        return axios.get(baseURL + `profile/` + userId);
+        return instance.delete(`unfollow/${id}`)
     }
 }
 
 export const profileAPI = {
     getProfile(userId: string) {
-        return instance.get(baseURL + `profile/` + userId)
+        return instance.get(`profile/` + userId)
     },
     getStatus(userId: string) {
-        return instance.get(baseURL + `status/` + userId)
+        return instance.get(`profile/status/` + userId)
     },
-    updateStatus(userId: string) {
-        return instance.put(baseURL + `status/`)
+    updateStatus(status: string) {
+        return instance.put(`profile/status/`, {status: status})
     },
 }
 

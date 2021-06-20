@@ -29,7 +29,10 @@ const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
                         {props.profile.contacts.github}
                     </div>
                     <div>
-                        <ProfileStatus status={'Hello!'} />
+                        <ProfileStatus
+                            status={props.status}
+                            updateUserStatus={props.updateUserStatus}
+                        />
                     </div>
                 </div>
             </div>

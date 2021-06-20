@@ -1,10 +1,11 @@
 import {v1} from 'uuid'
 import {Dispatch} from 'redux';
-import {usersAPI} from '../api/api';
+import {profileAPI} from '../api/api';
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_STATUS = 'SET_STATUS'
 
 type PostType = {
     id: string
@@ -40,25 +41,11 @@ export type ProfileType = {
 
 export type InitialStateType = typeof initialState
 
-type AddPostType = {
-    type: 'ADD-POST'
-    //newPostText: string
-}
-
-type UpdateNewPostTextType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-
-type setUserProfileType = {
-    type: 'SET_USER_PROFILE'
-    profile: ProfileType | null
-}
-
 export type ActionType =
-    AddPostType |
-    UpdateNewPostTextType |
-    setUserProfileType
+    ReturnType<typeof addPostActionCreator> |
+    ReturnType<typeof updateNewPostTextActionCreator> |
+    ReturnType<typeof setUserProfile> |
+    ReturnType<typeof setStatus>
 
 let initialState = {
     posts: [
@@ -66,7 +53,8 @@ let initialState = {
         {id: v1(), message: 'YoHello', likes: 15}
     ],
     newPostText: '',
-    profile: null as ProfileType | null
+    profile: null as ProfileType | null,
+    status: ''
 }
 
 const profileReducer = (state = initialState, action: ActionType): InitialStateType => {
@@ -96,36 +84,62 @@ const profileReducer = (state = initialState, action: ActionType): InitialStateT
                 ...state,
                 profile: action.profile
             };
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
+            };
         default:
             return state;
     }
 }
 
-export const addPostActionCreator = (): AddPostType => {
+export const addPostActionCreator = () => {
     return {
         type: ADD_POST,
         // newPostText: newPostText
-    }
+    } as const
 }
-export const updateNewPostTextActionCreator = (newText: string): UpdateNewPostTextType => {
+export const updateNewPostTextActionCreator = (newText: string) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: newText
-    }
+    }as const
 }
-export const setUserProfile = (profile: ProfileType | null): setUserProfileType => {
+export const setUserProfile = (profile: ProfileType | null) => {
     return {
         type: SET_USER_PROFILE,
         profile
-    }
+    }as const
 }
+export const setStatus = (status: string) => {
+    return {
+        type: SET_STATUS,
+        status
+    }as const
+}
+
 export const getUserProfile = (userId: string) => (dispatch: Dispatch<ActionType>) => {
-    usersAPI.getProfile(userId)
+    profileAPI.getProfile(userId)
         .then((response) => {
             dispatch(setUserProfile(response.data))
         })
 }
 
+export const getUserStatus = (userId: string) => (dispatch: Dispatch<ActionType>) => {
+    profileAPI.getStatus(userId)
+        .then((response) => {
+            dispatch(setStatus(response.data))
+        })
+}
+
+export const updateUserStatus = (status: string) => (dispatch: Dispatch<ActionType>) => {
+    profileAPI.updateStatus(status)
+        .then((response) => {
+            if (response.data.resultCode === 0)
+            dispatch(setStatus(status))
+        })
+}
 
 export default profileReducer;
 
