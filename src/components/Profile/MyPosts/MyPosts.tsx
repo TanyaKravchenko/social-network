@@ -1,13 +1,17 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 import {PostType} from '../../../redux/store';
+import {InjectedFormProps, Field, reduxForm} from 'redux-form';
 
 
 export type MyPostsType = {
-    addPost: () => void
-    onPostChange: (text: string) => void
+    addPost: (newPostText: string) => void
     posts: Array<PostType>
+    newPostText: string
+}
+
+type MyPostsFormType = {
     newPostText: string
 }
 
@@ -18,35 +22,34 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
               message={post.message}
               likes={post.likes}/>)
 
-    let addPost = () => {
-        props.addPost();
-    }
-
-    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.currentTarget.value;
-        props.onPostChange(text)
+    const addNewPost = (values: MyPostsFormType) => {
+        props.addPost(values.newPostText)
     }
 
     return (
         <div className={classes.postBlock}>
             <h3>My posts</h3>
-            <div>
-                <div>
-                    <textarea
-                        onChange={onPostChange}
-                        value={props.newPostText}
-                        placeholder={'Enter your message'}
-                    />
-                </div>
-                <div>
-                    <button onClick={addPost}>Add post</button>
-                </div>
-            </div>
+            <MyPostsFormRedux onSubmit={addNewPost}/>
             <div className={classes.posts}>
                 {postsElement}
             </div>
         </div>
     );
 }
+
+const MyPostsForm: React.FC<InjectedFormProps<MyPostsFormType>> = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field component={'textarea'} name={'newPostText'} placeholder={'Enter your message'}/>
+            </div>
+            <div>
+                <button>Add post</button>
+            </div>
+        </form>
+    )
+}
+
+const MyPostsFormRedux = reduxForm<MyPostsFormType>({form: 'postMyPostsForm'})(MyPostsForm)
 
 export default MyPosts;

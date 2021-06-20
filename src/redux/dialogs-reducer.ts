@@ -7,12 +7,6 @@ import src5 from '../images/avatar2.jpg';
 
 export const ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
 
-export type DialogType = {
-    id: string
-    name: string
-    avatar: string
-}
-
 export type MessageType = {
     id: string
     message: string

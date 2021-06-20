@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
@@ -43,7 +43,7 @@ const AddMessageForm: React.FC<InjectedFormProps<AddMessageFormType>> = (props) 
             <div>
                 <Field component={'textarea'} name={'nameMessageBody'} placeholder={'Enter your message'}/>
             </div>
-            <button>Add post</button>
+            <button>Send</button>
         </form>
     )
 }
