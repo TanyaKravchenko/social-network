@@ -35,6 +35,15 @@ class ProfileStatus extends React.Component<ProfileStatusType, ProfileStatusStat
         })
     }
 
+    componentDidUpdate(prevProps:Readonly<ProfileStatusType>, prevState:Readonly<ProfileStatusStatePropsType>) {
+        debugger
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }console.log('CDU')
+    }
+
     render() {
         return (
             <div>
