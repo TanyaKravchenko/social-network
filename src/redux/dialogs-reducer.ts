@@ -6,7 +6,6 @@ import src4 from '../images/avatar1.png';
 import src5 from '../images/avatar2.jpg';
 
 export const ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
-export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 
 export type DialogType = {
     id: string
@@ -22,18 +21,8 @@ export type MessageType = {
 export type InitialStateType = typeof initialState
 
 export type ActionType =
-    AddNewMessageTextType |
-    UpdateNewMessageTextType
+    ReturnType<typeof addNewMessageActionCreator>
 
-type AddNewMessageTextType = {
-    type: 'ADD-NEW-MESSAGE-TEXT'
-    // newMessageText: string
-}
-
-type UpdateNewMessageTextType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    updateNewMessageText: string
-}
 
 let initialState = {
     dialogs: [
@@ -47,8 +36,7 @@ let initialState = {
         {id: v1(), message: 'Hi'},
         {id: v1(), message: 'Yo'},
         {id: v1(), message: 'Hello!'},
-    ],
-    newMessageText: ''
+    ]
 }
 
 const dialogsReducer = (state = initialState, action: ActionType): InitialStateType => {
@@ -56,32 +44,21 @@ const dialogsReducer = (state = initialState, action: ActionType): InitialStateT
         case ADD_NEW_MESSAGE_TEXT:
             let newMessage: MessageType = {
                 id: v1(),
-                message: state.newMessageText,
+                message: action.nameMessageBody,
             }
             return {
                 ...state,
-                newMessageText: '',
                 messages: [...state.messages, newMessage]
-            };
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.updateNewMessageText
             }
         default:
             return state;
     }
 }
-export const addNewMessageActionCreator = (): AddNewMessageTextType => {
+export const addNewMessageActionCreator = (nameMessageBody: string) => {
     return {
         type: ADD_NEW_MESSAGE_TEXT,
-        // newMessageText: newMessageText
-    }
+        nameMessageBody
+    } as const
 }
-export const updateNewMessageActionCreator = (updateNewMessageText: string): UpdateNewMessageTextType => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        updateNewMessageText: updateNewMessageText
-    }
-}
+
 export default dialogsReducer;
