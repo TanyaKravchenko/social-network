@@ -1,3 +1,7 @@
+.formControlWrapper {
+    padding-left: 15px;
+}
+
 .formControl.error input,
 .formControl.error textarea {
     border: solid darkred 2px;

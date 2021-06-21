@@ -2,6 +2,7 @@ import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {Input} from '../common/FormsControls/FormsControl';
 import {required} from '../../utils/validators/validators';
+import styles from '../common/FormsControls/FormsControl.module.css';
 
 type FormDataType = {
     login: string
@@ -35,7 +36,7 @@ const Login: React.FC = () => {
         console.log(formData)
     }
     return (
-        <div>
+        <div className={styles.formControlWrapper}>
             <h1>Login</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
         </div>

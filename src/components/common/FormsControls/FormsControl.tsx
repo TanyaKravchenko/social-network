@@ -3,7 +3,7 @@ import {WrappedFieldMetaProps, WrappedFieldProps} from 'redux-form';
 import styles from './FormsControl.module.css'
 
 type FormControlPropsType = {
-    meta:WrappedFieldMetaProps
+    meta: WrappedFieldMetaProps
 }
 
 const FormControl: React.FC<FormControlPropsType> = ({meta: {touched, error}, children}) => {
