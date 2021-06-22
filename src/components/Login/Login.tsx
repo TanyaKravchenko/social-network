@@ -6,6 +6,7 @@ import styles from '../common/FormsControls/FormsControl.module.css';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {AppStateType} from '../../redux/redux-store';
+import {login} from '../../redux/auth-reducer';
 
 type FormDataType = {
     email: string
@@ -41,6 +42,7 @@ type LoginPropsType = {
 
 const Login: React.FC<LoginPropsType> = (props) => {
     const onSubmit = (formData: FormDataType) => {
+        debugger
         props.login(formData.email, formData.password, formData.rememberMe)
     }
 
@@ -58,4 +60,4 @@ const mapStateToProps = (state: AppStateType) => ({
     isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, {Login})(Login);
+export default connect(mapStateToProps, {login})(Login);
