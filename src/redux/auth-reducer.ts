@@ -8,7 +8,7 @@ type DataType = {
     userId: string | null
     email: string | null
     login: string | null
-    isAuth: boolean | null
+    isAuth: boolean
 }
 
 export type ActionType = ReturnType<typeof setAuthUserData>
@@ -30,14 +30,13 @@ const authReducer = (state = initialState, action: ActionType): InitialStateType
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.payload,
-                isAuth: true
+                ...action.payload
             };
         default:
             return state;
     }
 }
-export const setAuthUserData = (userId: string | null, email: string | null, login: string | null, isAuth: boolean | null) => {
+export const setAuthUserData = (userId: string | null, email: string | null, login: string | null, isAuth: boolean) => {
     return {
         type: SET_USER_DATA,
         payload: {userId, email, login, isAuth}
@@ -63,7 +62,7 @@ export const login = (email: string, password: string, rememberMe: boolean): Thu
         })
 }
 
-export const logout: ThunkType = () => (dispatch: DispatchType) => {
+export const logout = (): ThunkType => (dispatch: DispatchType) => {
     authAPI.logout()
         .then((response) => {
             if (response.data.resultCode === 0) {
