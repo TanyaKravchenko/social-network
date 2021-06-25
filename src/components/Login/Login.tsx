@@ -27,6 +27,9 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
                 <Field component={Input} name={'rememberMe'} type={'checkbox'}/>rememberMe
             </div>
             <div>
+                
+            </div>
+            <div>
                 <button>Login</button>
             </div>
         </form>
