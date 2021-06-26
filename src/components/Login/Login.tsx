@@ -12,6 +12,7 @@ type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
+    error: boolean
 }
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
@@ -26,9 +27,9 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             <div>
                 <Field component={Input} name={'rememberMe'} type={'checkbox'}/>rememberMe
             </div>
-            <div>
-                
-            </div>
+            {props.error && <div className={styles.formSummaryError}>
+                {props.error}
+            </div>}
             <div>
                 <button>Login</button>
             </div>
@@ -50,7 +51,7 @@ const Login: React.FC<LoginPropsType> = (props) => {
     }
 
     if (props.isAuth) {
-        return <Redirect to={'/profile'} />
+        return <Redirect to={'/profile'}/>
     }
     return (
         <div className={styles.formControlWrapper}>
