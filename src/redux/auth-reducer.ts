@@ -2,6 +2,8 @@ import {authAPI} from '../api/api';
 import {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {AppStateType} from './redux-store';
 import {stopSubmit} from 'redux-form';
+import {FormAction} from 'redux-form/lib/actions';
+
 
 export const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -12,7 +14,7 @@ type DataType = {
     isAuth: boolean
 }
 
-export type ActionType = ReturnType<typeof setAuthUserData>
+export type ActionType = ReturnType<typeof setAuthUserData> | FormAction
 
 export type InitialStateType = typeof initialState
 
