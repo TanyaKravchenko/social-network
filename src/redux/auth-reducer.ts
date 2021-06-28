@@ -7,12 +7,12 @@ import {FormAction} from 'redux-form/lib/actions';
 
 export const SET_USER_DATA = 'SET_USER_DATA'
 
-type DataType = {
-    userId: string | null
-    email: string | null
-    login: string | null
-    isAuth: boolean
-}
+// type DataType = {
+//     userId: string | null
+//     email: string | null
+//     login: string | null
+//     isAuth: boolean
+// }
 
 export type ActionType = ReturnType<typeof setAuthUserData> | FormAction
 
@@ -47,7 +47,7 @@ export const setAuthUserData = (userId: string | null, email: string | null, log
 }
 
 export const getAuthUserData = (): ThunkType => (dispatch: DispatchType) => {
-    authAPI.me()
+    return authAPI.me()
         .then((response) => {
             if (response.data.resultCode === 0) {
                 let {id, email, login} = response.data.data;

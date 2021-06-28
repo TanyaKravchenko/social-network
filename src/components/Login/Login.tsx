@@ -46,7 +46,6 @@ type LoginPropsType = {
 
 const Login: React.FC<LoginPropsType> = (props) => {
     const onSubmit = (formData: FormDataType) => {
-        debugger
         props.login(formData.email, formData.password, formData.rememberMe)
     }
 

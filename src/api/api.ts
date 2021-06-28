@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {stopSubmit} from 'redux-form';
 
 const baseURL = 'https://social-network.samuraijs.com/api/1.0/';
 const instance = axios.create({
@@ -10,17 +9,17 @@ const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/'
 })
 
-type loginPostType = {
-    resultCode: 0 | 1 | 100
-    messages: Array<string>
-        data: {
-        userId: 2
-    }
-}
-
-type StopSubmitType = {
-    stopSubmit: (form: string, errors?: any) => void
-}
+// type loginPostType = {
+//     resultCode: 0 | 1 | 100
+//     messages: Array<string>
+//         data: {
+//         userId: 2
+//     }
+// }
+//
+// type StopSubmitType = {
+//     stopSubmit: (form: string, errors?: any) => void
+// }
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {

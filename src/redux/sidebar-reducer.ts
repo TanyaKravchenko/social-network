@@ -3,19 +3,16 @@ import src1 from '../images/avatar3.jpg';
 import src2 from '../images/avatar5.jpg';
 import src3 from '../images/avatar4.jpeg';
 
-// type FriendsBlockType = {
-//     id: string
-//     friendName: string
-//     avatar: string
-// }
+export type FriendsBlockType = {
+    id: string
+    friendName: string
+    avatar: string
+}
 
-// export type InitialStateType = {
-//     friendsBlock: Array<FriendsBlockType>
-// }
+const ADD_FRIENDS = 'ADD_FRIENDS'
 
 export type InitialStateType = typeof initialState
-
-
+export type ActionType = ReturnType<typeof addFriends>
 
 let initialState = {
     friendsBlock: [
@@ -25,10 +22,22 @@ let initialState = {
     ]
 }
 
-const sidebarReducer = (state = initialState, action: any): InitialStateType => {
-  return state;
-
+const sidebarReducer = (state = initialState, action: ActionType): InitialStateType => {
+    switch (action.type) {
+        case ADD_FRIENDS:
+            return {
+                ...state,
+                friendsBlock: action.friendsBlock
+            };
+        default:
+            return state;
+    }
 }
+
+export const addFriends = (friendsBlock: Array<FriendsBlockType>) => ({
+    type: ADD_FRIENDS,
+    friendsBlock
+} as const)
 
 export default sidebarReducer;
 
