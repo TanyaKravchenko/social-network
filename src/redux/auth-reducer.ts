@@ -39,10 +39,10 @@ const authReducer = (state = initialState, action: ActionType): InitialStateType
             return state;
     }
 }
-export const setAuthUserData = (userId: string | null, email: string | null, login: string | null, isAuth: boolean) => {
+export const setAuthUserData = (id: string | null, email: string | null, login: string | null, isAuth: boolean) => {
     return {
         type: SET_USER_DATA,
-        payload: {userId, email, login, isAuth}
+        payload: {id, email, login, isAuth}
     } as const
 }
 
