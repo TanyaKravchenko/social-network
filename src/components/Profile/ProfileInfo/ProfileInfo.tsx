@@ -4,6 +4,7 @@ import {ProfileInfoType} from '../Profile';
 import Preloader from '../../common/Preloader/Preloader';
 import avatar from '../../../images/avatar3.jpg';
 import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
     if (!props.profile) {
@@ -29,7 +30,7 @@ const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
                         {props.profile.contacts.github}
                     </div>
                     <div>
-                        <ProfileStatus
+                        <ProfileStatusWithHooks
                             status={props.status}
                             updateUserStatus={props.updateUserStatus}
                         />
