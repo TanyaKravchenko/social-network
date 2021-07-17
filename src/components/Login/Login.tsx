@@ -1,6 +1,6 @@
 import React from 'react';
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {Input} from '../common/FormsControls/FormsControl';
+import {InjectedFormProps, reduxForm} from 'redux-form';
+import {createdField, Input} from '../common/FormsControls/FormsControl';
 import {required} from '../../utils/validators/validators';
 import styles from '../common/FormsControls/FormsControl.module.css';
 import {connect} from 'react-redux';
@@ -15,29 +15,38 @@ type FormDataType = {
     error: boolean
 }
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<FormDataType>> = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field
-                    placeholder={'email'}
-                    name={'email'}
-                    component={Input}
-                    validate={[required]}/>
-            </div>
-            <div>
-                <Field
-                    placeholder={'password'}
-                    name={'password'}
-                    component={Input}
-                    type={'password'}
-                    validate={[required]}/>
-            </div>
-            <div>
-                <Field component={Input} name={'rememberMe'} type={'checkbox'}/>rememberMe
-            </div>
-            {props.error && <div className={styles.formSummaryError}>
-                {props.error}
+        <form onSubmit={handleSubmit}>
+            {createdField('Email', 'email', [required],  Input)}
+            {createdField('Password', 'password', [required],  Input, {type: 'password'})}
+            {createdField(undefined, 'rememberMe', [],  Input, {type: 'checkbox'}, "remember me")}
+
+            {/*<div>*/}
+            {/*    <Field*/}
+            {/*        placeholder={'Email'}*/}
+            {/*        name={'email'}*/}
+            {/*        component={Input}*/}
+            {/*        validate={[required]}/>*/}
+            {/*</div>*/}
+            {/*<div>*/}
+            {/*    <Field*/}
+            {/*        placeholder={'Password'}*/}
+            {/*        name={'password'}*/}
+            {/*        component={Input}*/}
+            {/*        type={'password'}*/}
+            {/*        validate={[required]}/>*/}
+            {/*</div>*/}
+            {/*<div>*/}
+            {/*    <Field*/}
+            {/*        component={Input}*/}
+            {/*        name={'rememberMe'}*/}
+            {/*        type={'checkbox'}/>*/}
+            {/*    rememberMe*/}
+            {/*</div>*/}
+
+            {error && <div className={styles.formSummaryError}>
+                {error}
             </div>}
             <div>
                 <button>Login</button>
@@ -53,12 +62,12 @@ type LoginPropsType = {
     isAuth: boolean | null
 }
 
-const Login: React.FC<LoginPropsType> = (props) => {
+const Login: React.FC<LoginPropsType> = ({login, isAuth}) => {
     const onSubmit = (formData: FormDataType) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        login(formData.email, formData.password, formData.rememberMe)
     }
 
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to={'/profile'}/>
     }
     return (

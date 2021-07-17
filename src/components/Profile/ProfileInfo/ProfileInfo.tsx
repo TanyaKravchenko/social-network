@@ -5,8 +5,8 @@ import Preloader from '../../common/Preloader/Preloader';
 import avatar from '../../../images/avatar3.jpg';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
-    if (!props.profile) {
+const ProfileInfo: React.FC<ProfileInfoType> = ({profile, status, updateUserStatus}) => {
+    if (!profile) {
         return <Preloader/>
     }
     return (
@@ -14,21 +14,21 @@ const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
             <div>
                 <div className={classes.descriptionBlock}>
                     <div className={classes.ProfilePhotos}>
-                        <img src={props.profile.photos.small ? props.profile.photos.large : avatar} alt={'photos'}/>
+                        <img src={profile.photos.small ? profile.photos.large : avatar} alt={'photos'}/>
                     </div>
                     <div>
-                        {props.profile.fullName}
+                        {profile.fullName}
                     </div>
                     <div>
-                        {props.profile.aboutMe}
+                        {profile.aboutMe}
                     </div>
                     <div>
-                        {props.profile.contacts.github}
+                        {profile.contacts.github}
                     </div>
                     <div>
                         <ProfileStatusWithHooks
-                            status={props.status}
-                            updateUserStatus={props.updateUserStatus}
+                            status={status}
+                            updateUserStatus={updateUserStatus}
                         />
                     </div>
                 </div>

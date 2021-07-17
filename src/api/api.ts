@@ -1,5 +1,20 @@
 import axios from 'axios';
 
+// export enum ResultCodesEnum {
+//     Success = 0,
+//     Error = 1
+// }
+//
+// export enum ResultCodeForCapcthaEnum {
+//     CaptchaIsRequired = 10
+// }
+//
+// export type APIResponseType<D = {}, RC = ResultCodesEnum> = {
+//     data: D
+//     messages: Array<string>
+//     resultCode: RC
+// }
+
 const baseURL = 'https://social-network.samuraijs.com/api/1.0/';
 const instance = axios.create({
     withCredentials: true,
@@ -8,18 +23,6 @@ const instance = axios.create({
     },
     baseURL: 'https://social-network.samuraijs.com/api/1.0/'
 })
-
-// type loginPostType = {
-//     resultCode: 0 | 1 | 100
-//     messages: Array<string>
-//         data: {
-//         userId: 2
-//     }
-// }
-//
-// type StopSubmitType = {
-//     stopSubmit: (form: string, errors?: any) => void
-// }
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {

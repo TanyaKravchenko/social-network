@@ -17,7 +17,6 @@ export type InitialStateType = typeof initialState
 export type ActionType =
     ReturnType<typeof addNewMessageActionCreator>
 
-
 let initialState = {
     dialogs: [
         {id: v1(), name: 'Dimych', avatar: src1},

@@ -22,6 +22,7 @@ import {
 
 type UsersPropsType = {
     users: Array<UserType>
+    user: UserType
     follow: (userId: string) => void
     unfollow: (userId: string) => void
     pageSize: number
@@ -34,11 +35,13 @@ type UsersPropsType = {
 
 class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        const {currentPage, pageSize} = this.props
+        this.props.getUsers(currentPage, pageSize);
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        const {pageSize} = this.props
+        this.props.getUsers(pageNumber, pageSize);
     }
 
     render() {
@@ -50,6 +53,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
                     pageSize={this.props.pageSize}
                     currentPage={this.props.currentPage}
                     users={this.props.users}
+                    user={this.props.user}
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
                     onPageChanged={this.onPageChanged}

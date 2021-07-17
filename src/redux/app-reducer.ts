@@ -3,7 +3,6 @@ import {AppStateType} from './redux-store';
 import {FormAction} from 'redux-form/lib/actions';
 import {getAuthUserData} from './auth-reducer';
 
-
 export const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
 
 export type ActionType = ReturnType<typeof initializedSuccess> | FormAction
