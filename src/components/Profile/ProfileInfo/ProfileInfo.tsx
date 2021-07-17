@@ -3,7 +3,6 @@ import classes from './ProfileInfo.module.css';
 import {ProfileInfoType} from '../Profile';
 import Preloader from '../../common/Preloader/Preloader';
 import avatar from '../../../images/avatar3.jpg';
-import ProfileStatus from './ProfileStatus';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
@@ -13,9 +12,6 @@ const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
     return (
         <div>
             <div>
-                {/*<div className={classes.profileImg}>*/}
-                {/*    <img src={profileImg} alt={'profileImg'}/>*/}
-                {/*</div>*/}
                 <div className={classes.descriptionBlock}>
                     <div className={classes.ProfilePhotos}>
                         <img src={props.profile.photos.small ? props.profile.photos.large : avatar} alt={'photos'}/>

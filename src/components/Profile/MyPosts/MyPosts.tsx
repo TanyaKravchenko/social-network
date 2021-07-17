@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 import {PostType} from '../../../redux/store';
-import {InjectedFormProps, Field, reduxForm} from 'redux-form';
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormsControls/FormsControl';
 
@@ -18,7 +18,7 @@ type MyPostsFormType = {
 
 const maxLength10 = maxLengthCreator(10);
 
-const MyPosts: React.FC<MyPostsType> = (props) => {
+const MyPosts = React.memo((props: MyPostsType) => {
     let postsElement = props.posts.map(post =>
         <Post key={post.id}
               id={post.id}
@@ -28,7 +28,6 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
     const addNewPost = (values: MyPostsFormType) => {
         props.addPost(values.newPostText)
     }
-
     return (
         <div className={classes.postBlock}>
             <h3>My posts</h3>
@@ -38,7 +37,7 @@ const MyPosts: React.FC<MyPostsType> = (props) => {
             </div>
         </div>
     );
-}
+});
 
 const MyPostsForm: React.FC<InjectedFormProps<MyPostsFormType>> = (props) => {
     return (

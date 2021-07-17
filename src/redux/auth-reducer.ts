@@ -5,7 +5,7 @@ import {stopSubmit} from 'redux-form';
 import {FormAction} from 'redux-form/lib/actions';
 
 
-export const SET_USER_DATA = 'SET_USER_DATA'
+export const SET_USER_DATA = 'samurai-network/auth/SET_USER_DATA'
 
 // type DataType = {
 //     userId: string | null
