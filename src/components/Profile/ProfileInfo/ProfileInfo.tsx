@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
 import {ProfileInfoType} from '../Profile';
-import Preloader from '../../common/Preloader/Preloader';
+import Preloader from '../../common/Preloader/preloader';
 import avatar from '../../../images/avatar3.jpg';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 

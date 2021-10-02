@@ -10,7 +10,7 @@ import {
     unfollowSuccess,
     UserType
 } from '../../redux/users-reducer';
-import Preloader from '../common/Preloader/Preloader';
+import Preloader from '../common/Preloader/preloader';
 import {compose} from 'redux';
 import {
     getCurrentPage,

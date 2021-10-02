@@ -14,7 +14,7 @@ import Login from './components/Login/Login';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {initializeApp} from './redux/app-reducer';
-import Preloader from './components/common/Preloader/Preloader';
+import Preloader from './components/common/Preloader/preloader';
 import FriendsContainer from './components/Friends/FriendsContainer';
 
 type MapStateToPropsType = ReturnType<typeof mapStateToProps>
