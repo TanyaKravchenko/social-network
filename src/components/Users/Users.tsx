@@ -20,7 +20,7 @@ const Users: React.FC<UsersPropsType> = ({totalUsersCount, pageSize, currentPage
     return (
         <div className={classes.usersItemContainer}>
             <Paginator
-                totalUsersCount={totalUsersCount}
+                totalItemsCount={totalUsersCount}
                 pageSize={pageSize}
                 onPageChanged={onPageChanged}
                 currentPage={currentPage}/>
