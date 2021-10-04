@@ -14,6 +14,7 @@ import {compose} from 'redux';
 import {initializeApp} from './redux/app-reducer';
 import Preloader from './components/common/Preloader/preloader';
 import FriendsContainer from './components/Friends/FriendsContainer';
+import {withSuspense} from './hoc/withSuspense';
 // import DialogsContainer from './components/Dialogs/DialogsContainer';
 // import ProfileContainer from './components/Profile/ProfileContainer';
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -23,6 +24,9 @@ type MapStateToPropsType = ReturnType<typeof mapStateToProps>
 type ComponentDidMountPropsType = {
     initializeApp: () => void
 }
+
+const SuspendedDialogs = withSuspense(DialogsContainer);
+const SuspendedProfile = withSuspense(ProfileContainer);
 
 class App extends React.Component<MapStateToPropsType & ComponentDidMountPropsType> {
     componentDidMount() {
@@ -39,16 +43,8 @@ class App extends React.Component<MapStateToPropsType & ComponentDidMountPropsTy
                 <Navbar/>
                 <FriendsContainer/>
                 <div className="app-wrapper-content">
-                    <Route path="/profile/:userId?" render={() => {
-                        return <React.Suspense fallback={<div>Loading...</div>}>
-                            <ProfileContainer/>
-                        </React.Suspense>
-                    }}/>
-                    <Route path="/dialogs" render={() => {
-                        return <React.Suspense fallback={<div>Loading...</div>}>
-                            <DialogsContainer/>
-                        </React.Suspense>
-                    }}/>
+                    <Route path="/profile/:userId?" render={() => <SuspendedProfile />}/>
+                    <Route path="/dialogs" render={() => <SuspendedDialogs />}/>
                     <Route path="/users" render={() =>
                         <UsersContainer/>}/>
                     <Route path="/login" render={() =>
