@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './News.module.css'
-import news_image from '../../images/news.jpg';
+import news_image from '../../assets/images/news.jpg';
 
 const News = () => {
     return (

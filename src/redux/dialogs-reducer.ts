@@ -1,9 +1,9 @@
 import {v1} from 'uuid';
-import src1 from '../images/avatar3.jpg';
-import src2 from '../images/avatar5.jpg';
-import src3 from '../images/avatar4.jpeg';
-import src4 from '../images/avatar1.png';
-import src5 from '../images/avatar2.jpg';
+import src1 from '../assets/images/avatar3.jpg';
+import src2 from '../assets/images/avatar5.jpg';
+import src3 from '../assets/images/avatar4.jpeg';
+import src4 from '../assets/images/avatar1.png';
+import src5 from '../assets/images/avatar2.jpg';
 
 export const ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
 

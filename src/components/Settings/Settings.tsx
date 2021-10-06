@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Settings.module.css'
-import settings_image from '../../images/settings.png';
+import settings_image from '../../assets/images/settings.png';
 
 const Settings = () => {
     return (

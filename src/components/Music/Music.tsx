@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './Music.module.css'
-import music_image from '../../images/music.png';
+import music_image from '../../assets/images/music.png';
 
 const Music = () => {
     return (

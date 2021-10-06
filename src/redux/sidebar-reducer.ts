@@ -1,7 +1,7 @@
 import {v1} from 'uuid';
-import src1 from '../images/avatar3.jpg';
-import src2 from '../images/avatar5.jpg';
-import src3 from '../images/avatar4.jpeg';
+import src1 from '../assets/images/avatar3.jpg';
+import src2 from '../assets/images/avatar5.jpg';
+import src3 from '../assets/images/avatar4.jpeg';
 
 export type FriendsBlockType = {
     id: string
