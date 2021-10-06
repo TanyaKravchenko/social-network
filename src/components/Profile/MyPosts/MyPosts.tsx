@@ -1,15 +1,22 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import {PostType} from '../../../redux/store';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormsControls/FormsControl';
+import {PostType} from '../../../types/types';
 
-export type MyPostsType = {
-    addPost: (newPostText: string) => void
+// export type MyPostsType = {
+//     addPost: (newPostText: string) => void
+//     posts: Array<PostType>
+//     newPostText: string
+// }
+
+export type MapPropsType = {
     posts: Array<PostType>
-    newPostText: string
+}
+export type DispatchPropsType = {
+    addPost: (newPostText: string) => void
 }
 
 type MyPostsFormType = {
@@ -18,12 +25,12 @@ type MyPostsFormType = {
 
 const maxLength10 = maxLengthCreator(10);
 
-const MyPosts = React.memo((props: MyPostsType) => {
+const MyPosts: React.FC<MapPropsType & DispatchPropsType> = React.memo((props) => {
     let postsElement = props.posts.map(post =>
         <Post key={post.id}
               id={post.id}
               message={post.message}
-              likes={post.likes}/>)
+              likes={post.likesCount}/>)
 
     const addNewPost = (values: MyPostsFormType) => {
         props.addPost(values.newPostText)

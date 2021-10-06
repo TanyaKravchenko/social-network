@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {PhotosType} from '../types/types';
 
 const baseURL = 'https://social-network.samuraijs.com/api/1.0/';
 const instance = axios.create({
@@ -34,6 +35,16 @@ export const profileAPI = {
     updateStatus(status: string) {
         return instance.put(`profile/status/`, {status: status})
     },
+    savePhoto(photoFile: File) {
+        const formData = new FormData();
+        formData.append('image', photoFile);
+
+        return instance.put<APIResponseType<SavePhotoResponseDataType>>(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(res => res.data);
+    }
 }
 
 export const authAPI = {
@@ -46,5 +57,20 @@ export const authAPI = {
     logout() {
         return instance.delete(`auth/login`)
     }
+}
+
+type SavePhotoResponseDataType = {
+    photos: PhotosType
+}
+
+export enum ResultCodesEnum {
+    Success = 0,
+    Error = 1
+}
+
+export type APIResponseType<D = {}, RC = ResultCodesEnum> = {
+    data: D
+    messages: Array<string>
+    resultCode: RC
 }
 
