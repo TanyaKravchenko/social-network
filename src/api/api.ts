@@ -1,8 +1,7 @@
 import axios from 'axios';
-import {PhotosType} from '../types/types';
+import {PhotosType, UserType} from '../types/types';
 
-const baseURL = 'https://social-network.samuraijs.com/api/1.0/';
-const instance = axios.create({
+export const instance = axios.create({
     withCredentials: true,
     headers: {
         'API-KEY': '22d983b1-894f-49cd-9ef9-5c17b8e4c8a6'
@@ -12,7 +11,7 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
-        return instance.get(baseURL + `users?page=${currentPage}&count=${pageSize}`)
+        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then((response) => {
                 return response.data
             });
@@ -26,10 +25,10 @@ export const usersAPI = {
 }
 
 export const profileAPI = {
-    getProfile(userId: string) {
+    getProfile(userId: number) {
         return instance.get(`profile/` + userId)
     },
-    getStatus(userId: string) {
+    getStatus(userId: number) {
         return instance.get(`profile/status/` + userId)
     },
     updateStatus(status: string) {
@@ -47,30 +46,29 @@ export const profileAPI = {
     }
 }
 
-export const authAPI = {
-    me() {
-        return instance.get(`auth/me`)
-    },
-    login(email: string, password: string, rememberMe: boolean = false) {
-        return instance.post(`auth/login`, {email, password, rememberMe})
-    },
-    logout() {
-        return instance.delete(`auth/login`)
-    }
-}
 
-type SavePhotoResponseDataType = {
-    photos: PhotosType
-}
 
 export enum ResultCodesEnum {
     Success = 0,
     Error = 1
 }
 
+export enum ResultCodeForCapcthaEnum {
+    CaptchaIsRequired = 10
+}
+
+export type GetItemsType = {
+    items: Array<UserType>
+    totalCount: number
+    error: string | null
+}
 export type APIResponseType<D = {}, RC = ResultCodesEnum> = {
     data: D
     messages: Array<string>
     resultCode: RC
+}
+
+type SavePhotoResponseDataType = {
+    photos: PhotosType
 }
 

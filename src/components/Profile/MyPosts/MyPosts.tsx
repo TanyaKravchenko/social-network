@@ -6,12 +6,6 @@ import {maxLengthCreator, required} from '../../../utils/validators/validators';
 import {Textarea} from '../../common/FormsControls/FormsControl';
 import {PostType} from '../../../types/types';
 
-// export type MyPostsType = {
-//     addPost: (newPostText: string) => void
-//     posts: Array<PostType>
-//     newPostText: string
-// }
-
 export type MapPropsType = {
     posts: Array<PostType>
 }

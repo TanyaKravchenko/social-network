@@ -8,13 +8,13 @@ import Settings from './components/Settings/Settings';
 import store, {AppStateType} from './redux/redux-store';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
 import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
 import {initializeApp} from './redux/app-reducer';
 import Preloader from './components/common/Preloader/preloader';
 import FriendsContainer from './components/Friends/FriendsContainer';
 import {withSuspense} from './hoc/withSuspense';
+import {LoginPage} from './components/Login/LoginPage';
 // import DialogsContainer from './components/Dialogs/DialogsContainer';
 // import ProfileContainer from './components/Profile/ProfileContainer';
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -48,7 +48,7 @@ class App extends React.Component<MapStateToPropsType & ComponentDidMountPropsTy
                     <Route path="/users" render={() =>
                         <UsersContainer/>}/>
                     <Route path="/login" render={() =>
-                        <Login/>}/>
+                        <LoginPage/>}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
