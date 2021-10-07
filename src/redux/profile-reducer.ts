@@ -1,4 +1,3 @@
-import {Dispatch} from 'redux';
 import {profileAPI} from '../api/api';
 import {BaseThunkType, InferActionsTypes} from './redux-store';
 import {FormAction, stopSubmit} from 'redux-form/lib/actions';
@@ -9,10 +8,6 @@ const SET_USER_PROFILE = 'SN/PROFILE/SET_USER_PROFILE'
 const SET_STATUS = 'SN/PROFILE/SET_STATUS'
 const DELETE_POST = 'SN/PROFILE/DELETE_POST'
 const SAVE_PHOTO_SUCCESS = 'SN/PROFILE/SAVE_PHOTO_SUCCESS'
-
-export type InitialStateType = typeof initialState
-type ActionsType = InferActionsTypes<typeof actions>
-type ThunkType = BaseThunkType<ActionsType | FormAction>
 
 let initialState = {
     posts: [
@@ -70,17 +65,17 @@ export const actions = {
     savePhotoSuccess: (photos: PhotosType) => ({type: SAVE_PHOTO_SUCCESS, photos} as const)
 }
 
-export const getUserProfile = (userId: number) => async (dispatch: Dispatch<ActionsType>) => {
+export const getUserProfile = (userId: number): ThunkType => async (dispatch) => {
     let response = await profileAPI.getProfile(userId);
     dispatch(actions.setUserProfile(response.data))
 }
 
-export const getStatus = (userId: number) => async (dispatch: Dispatch<ActionsType>) => {
+export const getStatus = (userId: number): ThunkType => async (dispatch) => {
     let response = await profileAPI.getStatus(userId)
     dispatch(actions.setStatus(response.data))
 }
 
-export const updateStatus = (status: string) => async (dispatch: Dispatch<ActionsType>) => {
+export const updateStatus = (status: string): ThunkType => async (dispatch) => {
     let response = await profileAPI.updateStatus(status)
     if (response.data.resultCode === 0)
         dispatch(actions.setStatus(status))
@@ -95,6 +90,7 @@ export const savePhoto = (file: File): ThunkType => async (dispatch) => {
 }
 
 export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch, getState) => {
+    debugger
     const userId = getState().auth.userId
     const data = await profileAPI.saveProfile(profile)
 
@@ -102,13 +98,16 @@ export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch,
         if (userId != null) {
             dispatch(getUserProfile(userId))
         } else {
-            throw new Error("userId can't be null")
+            throw new Error('userId can\'t be null')
         }
     } else {
-        dispatch(stopSubmit("edit-profile", {_error: data.messages[0] }))
+        dispatch(stopSubmit('edit-profile', {_error: data.messages[0]}))
         return Promise.reject(data.messages[0])
     }
 }
 
 export default profileReducer;
 
+export type InitialStateType = typeof initialState
+type ActionsType = InferActionsTypes<typeof actions>
+type ThunkType = BaseThunkType<ActionsType | FormAction>

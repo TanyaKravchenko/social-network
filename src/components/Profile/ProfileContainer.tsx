@@ -2,10 +2,10 @@ import React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
-import {getUserProfile, getStatus, savePhoto, updateStatus} from '../../redux/profile-reducer';
+import {getUserProfile, getStatus, savePhoto, updateStatus, saveProfile} from '../../redux/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
-import { ProfileType } from '../../types/types';
+import {ProfileType} from '../../types/types';
 
 type DispatchPropsType = {
     getUserProfile: (userId: number) => void
@@ -21,9 +21,9 @@ type PathParamsType = {
 type PropsType = DispatchPropsType & mapStateToPropsType & RouteComponentProps<PathParamsType>
 
 class ProfileContainer extends React.Component<PropsType> {
-    constructor(props: PropsType) {
-        super(props);
-    }
+    // constructor(props: PropsType) {
+    //     super(props);
+    // }
 
     refreshProfile() {
         let userId: number | null = +this.props.match.params.userId;
@@ -47,7 +47,7 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     componentDidUpdate(prevProps: PropsType, prevState: PropsType) {
-        if (this.props.match.params.userId != prevProps.match.params.userId) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
             this.refreshProfile();
         }
     }
@@ -81,6 +81,6 @@ let mapStateToProps = (state: AppStateType) => {
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto}),
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto, saveProfile}),
     withRouter
 )(ProfileContainer)
