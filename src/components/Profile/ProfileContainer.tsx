@@ -5,12 +5,14 @@ import {AppStateType} from '../../redux/redux-store';
 import {getUserProfile, getStatus, savePhoto, updateStatus} from '../../redux/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
+import { ProfileType } from '../../types/types';
 
 type DispatchPropsType = {
     getUserProfile: (userId: number) => void
     getStatus: (userId: number) => void
     updateStatus: (status: string) => void
     savePhoto: (file: File) => void
+    saveProfile: (profile: ProfileType) => Promise<any>
 }
 type mapStateToPropsType = ReturnType<typeof mapStateToProps>
 type PathParamsType = {

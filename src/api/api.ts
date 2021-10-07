@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {PhotosType, UserType} from '../types/types';
+import {PhotosType, ProfileType, UserType} from '../types/types';
 
 export const instance = axios.create({
     withCredentials: true,
@@ -43,6 +43,9 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(res => res.data);
+    },
+    saveProfile(profile: ProfileType) {
+        return instance.put<APIResponseType>(`profile`, profile).then(res => res.data);
     }
 }
 

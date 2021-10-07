@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
 import {profileAPI} from '../api/api';
 import {BaseThunkType, InferActionsTypes} from './redux-store';
-import {FormAction} from 'redux-form/lib/actions';
+import {FormAction, stopSubmit} from 'redux-form/lib/actions';
 import {PhotosType, PostType, ProfileType} from '../types/types';
 
 const ADD_POST = 'SN/PROFILE/ADD-POST'
@@ -91,6 +91,22 @@ export const savePhoto = (file: File): ThunkType => async (dispatch) => {
 
     if (data.resultCode === 0) {
         dispatch(actions.savePhotoSuccess(data.data.photos))
+    }
+}
+
+export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch, getState) => {
+    const userId = getState().auth.userId
+    const data = await profileAPI.saveProfile(profile)
+
+    if (data.resultCode === 0) {
+        if (userId != null) {
+            dispatch(getUserProfile(userId))
+        } else {
+            throw new Error("userId can't be null")
+        }
+    } else {
+        dispatch(stopSubmit("edit-profile", {_error: data.messages[0] }))
+        return Promise.reject(data.messages[0])
     }
 }
 
