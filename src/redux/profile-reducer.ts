@@ -1,6 +1,6 @@
 import {profileAPI} from '../api/api';
 import {BaseThunkType, InferActionsTypes} from './redux-store';
-import {FormAction, stopSubmit} from 'redux-form/lib/actions';
+import {FormAction, stopSubmit} from 'redux-form';
 import {PhotosType, PostType, ProfileType} from '../types/types';
 
 const ADD_POST = 'SN/PROFILE/ADD-POST'
