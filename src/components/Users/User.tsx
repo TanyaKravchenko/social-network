@@ -1,14 +1,14 @@
 import React from 'react';
-import {UserType} from '../../redux/users-reducer';
 import classes from '../Users/Users.module.css';
 import src3 from '../../assets/images/avatar3.jpg';
 import {NavLink} from 'react-router-dom';
+import {UserType} from '../../types/types';
 
 type UsersPropsType = {
     user: UserType
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
-    followingInProgress: Array<string>
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    followingInProgress: Array<number>
 }
 
 const User: React.FC<UsersPropsType> = ({user, followingInProgress, unfollow, follow}) => {
