@@ -1,4 +1,4 @@
-import {profileAPI} from '../api/api';
+import {profileAPI} from '../api/profile-api';
 import {BaseThunkType, InferActionsTypes} from './redux-store';
 import {FormAction, stopSubmit} from 'redux-form';
 import {PhotosType, PostType, ProfileType} from '../types/types';
@@ -66,18 +66,18 @@ export const actions = {
 }
 
 export const getUserProfile = (userId: number): ThunkType => async (dispatch) => {
-    let response = await profileAPI.getProfile(userId);
-    dispatch(actions.setUserProfile(response.data))
+    let data = await profileAPI.getProfile(userId);
+    dispatch(actions.setUserProfile(data))
 }
 
 export const getStatus = (userId: number): ThunkType => async (dispatch) => {
-    let response = await profileAPI.getStatus(userId)
-    dispatch(actions.setStatus(response.data))
+    let data = await profileAPI.getStatus(userId)
+    dispatch(actions.setStatus(data))
 }
 
 export const updateStatus = (status: string): ThunkType => async (dispatch) => {
-    let response = await profileAPI.updateStatus(status)
-    if (response.data.resultCode === 0)
+    let data = await profileAPI.updateStatus(status)
+    if (data.resultCode === 0)
         dispatch(actions.setStatus(status))
 }
 
