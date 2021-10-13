@@ -5,7 +5,7 @@ import src3 from '../assets/images/avatar4.jpeg';
 import src4 from '../assets/images/avatar1.png';
 import src5 from '../assets/images/avatar2.jpg';
 
-export const ADD_NEW_MESSAGE_TEXT = 'ADD-NEW-MESSAGE-TEXT'
+export const ADD_NEW_MESSAGE_TEXT = 'SN/dialogs/ADD-NEW-MESSAGE-TEXT'
 
 export type MessageType = {
     id: string
