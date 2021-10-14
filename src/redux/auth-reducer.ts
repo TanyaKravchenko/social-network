@@ -7,10 +7,6 @@ import {securityAPI} from '../api/security-api';
 export const SET_USER_DATA = 'SN/auth/SET_USER_DATA'
 export const GET_CAPTCHA_URL_SUCCESS = 'SN/auth/GET_CAPTCHA_URL_SUCCESS'
 
-export type InitialStateType = typeof initialState;
-type ActionsType = InferActionsTypes<typeof actions>
-type ThunkType = BaseThunkType<ActionsType | FormAction>
-
 let initialState = {
     userId: null as (number | null),
     email: null as string | null,
@@ -78,3 +74,7 @@ export const logout = (): ThunkType => async (dispatch) => {
 }
 
 export default authReducer;
+
+export type InitialStateType = typeof initialState;
+type ActionsType = InferActionsTypes<typeof actions>
+type ThunkType = BaseThunkType<ActionsType | FormAction>
