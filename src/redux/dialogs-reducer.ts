@@ -8,6 +8,12 @@ import {InferActionsTypes} from './redux-store';
 
 export const ADD_NEW_MESSAGE_TEXT = 'SN/dialogs/ADD-NEW-MESSAGE-TEXT'
 
+type DialogType = {
+    id: string
+    name: string
+    avatar: string
+}
+
 export type MessageType = {
     id: string
     message: string
@@ -20,12 +26,12 @@ let initialState = {
         {id: v1(), name: 'Valera', avatar: src3},
         {id: v1(), name: 'Ignat', avatar: src4},
         {id: v1(), name: 'Victor', avatar: src5},
-    ],
+    ] as Array<DialogType>,
     messages: [
         {id: v1(), message: 'Hi'},
         {id: v1(), message: 'Yo'},
         {id: v1(), message: 'Hello!'},
-    ]
+    ] as Array<MessageType>
 }
 
 const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
