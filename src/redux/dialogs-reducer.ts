@@ -4,6 +4,7 @@ import src2 from '../assets/images/avatar5.jpg';
 import src3 from '../assets/images/avatar4.jpeg';
 import src4 from '../assets/images/avatar1.png';
 import src5 from '../assets/images/avatar2.jpg';
+import {InferActionsTypes} from './redux-store';
 
 export const ADD_NEW_MESSAGE_TEXT = 'SN/dialogs/ADD-NEW-MESSAGE-TEXT'
 
@@ -11,11 +12,6 @@ export type MessageType = {
     id: string
     message: string
 }
-
-export type InitialStateType = typeof initialState
-
-export type ActionType =
-    ReturnType<typeof addNewMessageActionCreator>
 
 let initialState = {
     dialogs: [
@@ -32,7 +28,7 @@ let initialState = {
     ]
 }
 
-const dialogsReducer = (state = initialState, action: ActionType): InitialStateType => {
+const dialogsReducer = (state = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case ADD_NEW_MESSAGE_TEXT:
             let newMessage: MessageType = {
@@ -47,11 +43,17 @@ const dialogsReducer = (state = initialState, action: ActionType): InitialStateT
             return state;
     }
 }
-export const addNewMessageActionCreator = (nameMessageBody: string) => {
-    return {
-        type: ADD_NEW_MESSAGE_TEXT,
-        nameMessageBody
-    } as const
+
+export const actions = {
+    addNewMessageActionCreator: (nameMessageBody: string) => {
+        return {
+            type: ADD_NEW_MESSAGE_TEXT,
+            nameMessageBody
+        } as const
+    }
 }
 
 export default dialogsReducer;
+
+export type InitialStateType = typeof initialState
+type ActionsType = InferActionsTypes<typeof actions>
