@@ -21,9 +21,6 @@ type PathParamsType = {
 type PropsType = DispatchPropsType & mapStateToPropsType & RouteComponentProps<PathParamsType>
 
 class ProfileContainer extends React.Component<PropsType> {
-    // constructor(props: PropsType) {
-    //     super(props);
-    // }
 
     refreshProfile() {
         let userId: number | null = +this.props.match.params.userId;
